@@ -3,148 +3,22 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Aprenda Penteados Cacheados - LaCoque Expert</title>
-  
+  <title>Aprenda Penteados Cacheados e Cobre R$200 — LaCoque Expert</title>
+  <meta name="description" content="Curso prático de penteados em cabelo cacheado e crespo. Aprenda 3 técnicas que transformam um atendimento de R$80 em R$200. Método Carla LaCoque com mais de 20 anos de experiência.">
+
+  <!-- Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;800&display=swap" rel="stylesheet">
-  
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- CDN Libraries -->
   <script src="https://cdn.tailwindcss.com"></script>
   <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
 
-  <style>
-    :root {
-      --wine: #6d1620;
-      --terracotta: #af3a20;
-      --orange: #e58548;
-      --blush: #fce7e0;
-      --ink: #3a1015;
-      --paper: #fffaf7;
-    }
-    
-    body {
-      font-family: 'Raleway', sans-serif;
-      background-color: var(--paper);
-      color: var(--ink);
-      overflow-x: hidden;
-      scroll-behavior: smooth;
-    }
-
-    /* Scrollbar (opcional) */
-    ::-webkit-scrollbar { width: 8px; }
-    ::-webkit-scrollbar-track { background: var(--blush); }
-    ::-webkit-scrollbar-thumb { background: var(--wine); border-radius: 4px; }
-    
-    /* Classes CSS do Design System */
-    .glass-panel {
-      background: rgba(255, 250, 247, 0.75);
-      backdrop-filter: blur(16px);
-      -webkit-backdrop-filter: blur(16px);
-      border: 1px solid rgba(109, 22, 32, 0.1);
-    }
-    
-    .btn-primary {
-      background-color: var(--wine);
-      color: var(--blush);
-      padding: 0.875rem 1.75rem;
-      border-radius: 9999px;
-      font-weight: 800;
-      font-size: 0.875rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-      border: 1px solid transparent;
-      box-shadow: 0 4px 15px rgba(109, 22, 32, 0.2);
-    }
-    .btn-primary:hover {
-      background-color: var(--ink);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(109, 22, 32, 0.4);
-    }
-    
-    .btn-outline {
-      background-color: transparent;
-      color: var(--terracotta);
-      border: 1px solid var(--terracotta);
-      padding: 0.875rem 1.75rem;
-      border-radius: 9999px;
-      font-weight: 800;
-      font-size: 0.875rem;
-      text-transform: uppercase;
-      letter-spacing: 0.1em;
-      transition: all 0.4s ease;
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 0.75rem;
-    }
-    .btn-outline:hover {
-      background-color: var(--terracotta);
-      color: var(--paper);
-      transform: translateY(-3px);
-      box-shadow: 0 10px 25px rgba(175, 58, 32, 0.3);
-    }
-
-    .reveal { opacity: 0; transform: translateY(40px); }
-    
-    .particles-bg {
-      position: absolute;
-      top: 0; left: 0; width: 100%; height: 100%;
-      overflow: hidden;
-      z-index: 0;
-      pointer-events: none;
-    }
-    
-    .particle {
-      position: absolute;
-      border-radius: 50%;
-      background: rgba(175, 58, 32, 0.15);
-      animation: float 25s infinite linear;
-    }
-    @keyframes float {
-      0% { transform: translateY(100vh) scale(0); opacity: 0; }
-      20% { opacity: 1; }
-      80% { opacity: 1; }
-      100% { transform: translateY(-20vh) scale(1.5); opacity: 0; }
-    }
-    
-    .glow-effect { position: relative; }
-    .glow-effect::before {
-      content: '';
-      position: absolute;
-      inset: -2px;
-      background: linear-gradient(45deg, var(--wine), var(--terracotta), var(--orange), var(--wine));
-      z-index: -1;
-      border-radius: inherit;
-      background-size: 300%;
-      animation: glowing 10s linear infinite;
-      opacity: 0;
-      transition: opacity 0.4s ease-in-out;
-    }
-    .glow-effect:hover::before { opacity: 0.7; }
-    @keyframes glowing {
-      0% { background-position: 0 0; }
-      50% { background-position: 300% 0; }
-      100% { background-position: 0 0; }
-    }
-    
-    .scroll-indicator {
-      animation: bounce 2s infinite;
-    }
-    @keyframes bounce {
-      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-      40% { transform: translateY(-10px); }
-      60% { transform: translateY(-5px); }
-    }
-  </style>
-
+  <!-- Tailwind Config -->
   <script>
     tailwind.config = {
       theme: {
@@ -164,194 +38,1255 @@
       }
     }
   </script>
-</head>
-<body class="antialiased selection:bg-wine selection:text-paper min-h-screen flex flex-col relative">
-  <!-- Fundo com Partículas -->
-  <div class="particles-bg" id="particles"></div>
 
-  <!-- Navegação Fixa -->
-  <nav class="fixed w-full z-50 glass-panel py-4 px-6 md:px-12 flex justify-between items-center transition-all duration-300" id="navbar">
-    <div class="text-xl md:text-2xl font-extrabold text-wine tracking-tighter">
-      LACOQUE <span class="text-terracotta font-light">EXPERT</span>
+  <link rel="stylesheet" href="assets/css/styles.css">
+
+</head>
+<body class="antialiased selection:bg-wine selection:text-paper">
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="fixed w-full z-50 glass-panel py-5 px-6 md:px-8 transition-all duration-500" id="navbar">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <!-- Logo -->
+      <a href="#" class="text-xl md:text-2xl font-extrabold text-wine tracking-tighter flex items-center gap-1">
+        LACOQUE <span class="text-terracotta font-light">EXPERT</span>
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden lg:flex gap-10 text-[13px] font-bold text-ink uppercase tracking-[0.14em]">
+        <a href="#hero" class="hover:text-terracotta transition-colors relative group text-terracotta">
+          Início
+          <span class="absolute -bottom-2 left-0 w-full h-[2px] bg-terracotta transition-all duration-300"></span>
+        </a>
+        <a href="#metodo" class="hover:text-terracotta transition-colors relative group">
+          Método
+          <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-terracotta transition-all duration-300 group-hover:w-full"></span>
+        </a>
+
+        <a href="#faq" class="hover:text-terracotta transition-colors relative group">
+          Dúvidas
+          <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-terracotta transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      </div>
+
+      <!-- CTA Nav (desktop) -->
+      <a href="#cta" class="hidden lg:inline-flex btn-primary glow-effect text-xs py-3 px-5">Quero Aprender<i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+
+      <!-- Mobile Hamburger -->
+      <button id="mobileMenuBtn" class="lg:hidden flex flex-col gap-[5px] p-2 rounded-xl hover:bg-blush transition-colors" aria-label="Abrir menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line w-[14px]"></span>
+        <span class="hamburger-line"></span>
+      </button>
     </div>
-    
-    <div class="hidden md:flex gap-8 lg:gap-12 text-[12px] font-bold text-ink uppercase tracking-[0.14em]">
-      <a href="#" class="hover:text-terracotta transition-colors relative group">
-        Início
-        <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-terracotta transition-all duration-300 group-hover:w-full"></span>
-      </a>
-      <a href="#" class="hover:text-terracotta transition-colors relative group">
-        Método
-        <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-terracotta transition-all duration-300 group-hover:w-full"></span>
-      </a>
-      <a href="#" class="hover:text-terracotta transition-colors relative group">
-        Conteúdo
-        <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-terracotta transition-all duration-300 group-hover:w-full"></span>
-      </a>
-      <a href="#" class="hover:text-terracotta transition-colors relative group">
-        Depoimentos
-        <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-terracotta transition-all duration-300 group-hover:w-full"></span>
-      </a>
+
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobileMenu" class="hidden lg:hidden mt-4 pb-4 border-t border-wine/10 pt-4">
+      <div class="flex flex-col gap-4 text-[13px] font-bold text-ink uppercase tracking-[0.14em]">
+        <a href="#hero" class="hover:text-terracotta transition-colors py-2">Início</a>
+        <a href="#metodo" class="hover:text-terracotta transition-colors py-2">Método</a>
+
+        <a href="#faq" class="hover:text-terracotta transition-colors py-2">Dúvidas</a>
+        <a href="#cta" class="btn-primary glow-effect text-xs py-3 px-5 mt-2 w-full text-center">Quero Aprender<i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
     </div>
-    
-    <a href="#" class="hidden md:inline-flex btn-primary !py-2.5 !px-6 !text-[11px] shadow-md">Portal de Alunos</a>
-    
-    <!-- Menu Mobile -->
-    <button class="md:hidden text-wine focus:outline-none">
-      <i data-lucide="menu" class="w-6 h-6"></i>
-    </button>
   </nav>
 
-  <!-- Seção Hero -->
-  <main class="flex-grow flex items-center relative z-10 pt-28 pb-20 lg:pt-0 lg:pb-0 min-h-screen">
-    <div class="max-w-7xl mx-auto w-full px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
-      
-      <!-- Coluna de Texto (Esquerda no Desktop, Cima no Mobile) -->
-      <div class="lg:col-span-6 xl:col-span-7 flex flex-col justify-center order-2 lg:order-1 pt-4 lg:pt-0">
-        
-        <!-- Kicker -->
-        <div class="stagger-element flex items-center gap-3 mb-6">
-          <div class="w-8 h-[2px] bg-terracotta"></div>
-          <span class="text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] text-terracotta leading-snug">
-            Método Carla LaCoque <span class="hidden sm:inline">·</span><br class="sm:hidden" /> Mais de 20 anos formando cabeleireiras em cachos
-          </span>
+
+  <!-- ===== HERO SECTION ===== -->
+  <section id="hero" class="relative min-h-screen flex items-center overflow-hidden bg-paper">
+
+    <!-- Particles Background -->
+    <div class="particles-bg" id="particles"></div>
+
+    
+    <!-- Decorative Background Elements (Parallax & Glow) -->
+    <div class="hero-bg-circle parallax-element w-[800px] h-[800px] -top-[100px] -right-[150px] z-0 opacity-80" data-speed="0.1" style="background: radial-gradient(circle, rgba(229,133,72,0.15) 0%, rgba(229,133,72,0) 70%);"></div>
+    <div class="hero-bg-circle parallax-element w-[500px] h-[500px] bottom-[5%] -left-[150px] z-0 opacity-80" data-speed="-0.15" style="background: radial-gradient(circle, rgba(109,22,32,0.1) 0%, rgba(109,22,32,0) 70%);"></div>
+    <div class="absolute top-[20%] left-[20%] w-[300px] h-[300px] bg-terracotta/20 rounded-full blur-[100px] parallax-element z-0" data-speed="0.05"></div>
+
+    <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blush/40 via-transparent to-transparent z-0 hidden lg:block"></div>
+
+    <!-- Main Content Grid -->
+    <div class="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-8 pt-28 pb-20 lg:pt-32 lg:pb-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+
+        <!-- LEFT COLUMN: Text Content -->
+        <div class="lg:col-span-6 xl:col-span-7 order-1 lg:order-1">
+
+          <!-- Kicker Badge -->
+          <div id="anim-kicker" class="reveal inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-orange/30 bg-blush/60 backdrop-blur-sm mb-7 shadow-sm">
+            <span class="relative flex items-center justify-center w-2.5 h-2.5 flex-shrink-0">
+              <span class="w-2 h-2 rounded-full bg-orange shadow-[0_0_8px_#e58548]"></span>
+              <span class="pulse-ring"></span>
+            </span>
+            <span class="text-[11px] md:text-xs font-bold uppercase tracking-[0.13em] text-terracotta leading-tight">
+              Método Carla LaCoque &middot; 20+ anos em cachos
+            </span>
+          </div>
+
+          <!-- Headline -->
+          <h1 id="anim-headline" class="reveal text-[28px] sm:text-[34px] md:text-[40px] lg:text-[44px] xl:text-[48px] font-extrabold text-ink leading-[1.08] tracking-[-0.01em] mb-6">
+            Existe um serviço, dentro do seu próprio salão, que você já sabe fazer <span class="text-transparent bg-clip-text bg-gradient-to-r from-terracotta to-wine">pela metade do preço</span> que podia cobrar.
+          </h1>
+
+          
+
+          <!-- Subheadline -->
+          <p id="anim-sub" class="reveal text-[15.5px] md:text-[17px] text-ink/75 leading-[1.6] mb-9 max-w-xl font-normal">
+            Em 1 hora você aprende as 3 técnicas de penteado em cacheado e crespo que transformam um atendimento de R$80 em um atendimento de R$200 — sem comprar equipamento novo, sem fazer outro curso de R$500, sem depender de sorte.
+          </p>
+
+          <!-- CTAs -->
+          <div id="anim-cta" class="reveal flex flex-col sm:flex-row gap-4 mb-5">
+            <a href="#cta" class="btn-primary glow-effect cta-pulse py-4 px-7 text-sm md:text-[0.875rem]">Quero Aprender<i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
+            <a href="#metodo" class="btn-outline py-4 px-7 text-sm md:text-[0.875rem] whitespace-nowrap">
+              Ver o que você vai aprender
+              <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </a>
+          </div>
+
+          <!-- Microcopy -->
+          <div id="anim-micro" class="reveal flex flex-wrap items-center gap-3 text-[12px] md:text-[12.5px] text-ink/50 font-medium">
+            <span class="flex items-center gap-2">
+              <i data-lucide="zap" class="w-3.5 h-3.5 text-orange"></i>
+              Acesso imediato
+            </span>
+            <span class="microcopy-dot"></span>
+            <span class="flex items-center gap-2">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-orange"></i>
+              Aplicação em 1 hora
+            </span>
+            <span class="microcopy-dot"></span>
+            <span class="flex items-center gap-2">
+              <i data-lucide="smartphone" class="w-3.5 h-3.5 text-orange"></i>
+              Direto no seu celular
+            </span>
+          </div>
+
         </div>
 
-        <!-- Headline -->
-        <h1 class="stagger-element text-[34px] sm:text-5xl lg:text-5xl xl:text-[60px] font-extrabold tracking-tighter mb-6 leading-[1.05] text-wine uppercase">
-          Existe um serviço, dentro do seu próprio salão, que você já sabe fazer <span class="text-terracotta bg-blush/30 px-2 rounded-lg">pela metade do preço</span> que podia cobrar.
-        </h1>
+        <!-- RIGHT COLUMN: Image -->
+        <div class="lg:col-span-6 xl:col-span-5 order-2 lg:order-2 flex justify-center lg:justify-end">
+          <div id="anim-image" class="reveal-right w-full max-w-md lg:max-w-none">
+            <div class="hero-image-wrapper tilt-container" id="heroTilt">
+              <!-- SUBSTITUIR: foto placeholder, trocar por still real da Carla -->
+              <img 
+                src="assets/images/hero.jpg" 
+                alt="Penteado em cabelo cacheado sendo finalizado por profissional" 
+                class="w-full h-[360px] sm:h-[420px] md:h-[480px] lg:h-[540px] xl:h-[580px] object-cover rounded-[24px]"
+                loading="eager"
+                fetchpriority="high"
+              >
+              <!-- Overlay elements inside the image -->
+              <div class="absolute bottom-0 left-0 right-0 p-5 md:p-6 z-10">
+                <div class="glass-panel-dark rounded-2xl px-5 py-4 flex items-center gap-4">
+                  <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-orange/20 flex items-center justify-center flex-shrink-0">
+                    <i data-lucide="trending-up" class="w-5 h-5 md:w-6 md:h-6 text-orange"></i>
+                  </div>
+                  <div>
+                    <span class="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.14em] text-orange block">Faturamento médio</span>
+                    <span class="text-paper font-extrabold text-lg md:text-xl tracking-tight">De R$80 &rarr; R$200</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Small floating badge -->
+            <div class="hidden md:flex absolute -top-3 -left-3 lg:-top-4 lg:-left-6 z-20 items-center gap-2 px-4 py-2.5 rounded-2xl bg-wine shadow-xl shadow-wine/20" style="transform: rotate(-3deg);">
+              <i data-lucide="users" class="w-4 h-4 text-orange"></i>
+              <span class="text-[10px] font-bold uppercase tracking-[0.12em] text-blush whitespace-nowrap">+4.000 Alunas</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10 scroll-indicator">
+      <span class="text-[10px] uppercase tracking-[0.18em] text-ink/40 font-bold">Saiba mais</span>
+      <div class="w-[1px] h-10 bg-gradient-to-b from-terracotta/60 to-transparent"></div>
+    </div>
+
+  </section>
+
+
+  <!-- ===== SECTION 2: PAIN / IDENTIFICATION ===== -->
+  <section id="problema" class="relative py-24 md:py-32 lg:py-40 overflow-hidden bg-wine">
+
+    <!-- Parallax Background Image -->
+    <div class="absolute inset-0 w-full h-[120%] -top-[10%] z-0" id="s2-bg-parallax">
+      <!-- SUBSTITUIR: foto placeholder, trocar por still real da Carla/salão -->
+      <img src="https://images.unsplash.com/photo-1595476108010-b4d1f10d5e43?q=80&w=1600&auto=format&fit=crop" alt="Background editorial" class="w-full h-[120%] object-cover parallax-element" data-speed="-0.15" style="top: -10%; position: relative;">
+    </div>
+
+    <!-- Gradient Overlay tint -->
+    <div class="absolute inset-0 w-full h-full bg-gradient-to-br from-wine/90 via-wine/80 to-terracotta/75 z-0" style="mix-blend-mode: multiply;"></div>
+    <div class="absolute inset-0 w-full h-full bg-wine/50 z-0"></div> <!-- base tint for legibility -->
+
+    <!-- Wave Transition from Paper -->
+    <div class="section-wave-top">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none" fill="var(--paper)">
+        <path d="M0,0 L0,60 Q180,90 360,65 Q540,40 720,55 Q900,70 1080,50 Q1260,30 1440,60 L1440,0 Z"></path>
+      </svg>
+    </div>
+
+    <!-- Scroll Progress Indicator (desktop only) -->
+    <div class="section-progress" id="sectionProgress">
+      <div class="section-progress-fill" id="sectionProgressFill"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-4xl mx-auto px-6 md:px-8">
+
+      <!-- Section Label -->
+      <div class="text-center mb-16 md:mb-20">
+        <span class="section-label para-reveal text-paper border-paper/20 bg-paper/5" id="s2-label">O Problema Real</span>
+      </div>
+
+
+      <!-- BLOCO 1: Editorial Text -->
+      
+      <!-- Ponto de Luz / Parallax Glow nas costas do texto -->
+      <div class="absolute top-[10%] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-orange/30 rounded-full blur-[120px] parallax-element z-0 mix-blend-screen" data-speed="-0.2"></div>
+      <div class="absolute bottom-[20%] -right-[100px] w-[400px] h-[400px] bg-terracotta/40 rounded-full blur-[100px] parallax-element z-0 mix-blend-screen" data-speed="0.1"></div>
+      
+      <div class="max-w-3xl
+ mx-auto mb-20 md:mb-28 text-paper">
+
+        <p class="para-reveal text-xl sm:text-2xl md:text-[28px] font-extrabold leading-[1.35] tracking-[-0.01em] mb-8">
+          Deixa eu te contar uma coisa que quase nenhuma cabeleireira admite em voz alta.
+        </p>
+
+        <p class="para-reveal text-lg md:text-xl font-bold leading-[1.5] mb-6">
+          Você não perde dinheiro porque cobra barato.
+        </p>
+
+        <p class="para-reveal text-[15.5px] md:text-[17px] text-paper/80 leading-[1.65] mb-8 font-normal">
+          Você perde dinheiro porque cobra o mesmo preço por dois serviços completamente diferentes — o penteado simples de todo dia, e o penteado de festa que a cliente cacheada pede quando o casamento da irmã dela é sábado.
+        </p>
+
+        <p class="para-reveal impact-text text-xl md:text-2xl font-extrabold leading-[1.3] mb-8 tracking-tight" id="impact1">
+          Mesma cadeira. Mesmo tempo. Preço idêntico.
+        </p>
+
+        <p class="para-reveal text-[15.5px] md:text-[17px] text-paper/80 leading-[1.65] mb-8 font-normal">
+          Só que um desses dois serviços vale três vezes mais no mercado — e você está deixando esse dinheiro em cima da mesa toda vez que uma cacheada senta na sua cadeira e você resolve o problema dela com a técnica que aprendeu pra cabelo liso.
+        </p>
+
+        <p class="para-reveal impact-text text-xl md:text-2xl font-extrabold leading-[1.3] tracking-tight" id="impact2">
+          Não é falta de talento. É que ninguém te ensinou a diferença.
+        </p>
+
+      </div>
+
+
+      <!-- COMPARATIVO VISUAL (Glassmorphism + Parallax) -->
+      <div class="mb-20 md:mb-32 max-w-2xl mx-auto relative perspective-[1200px]" id="cardsContainer">
         
-        <!-- Subheadline -->
-        <p class="stagger-element text-[15px] sm:text-[17px] text-ink/80 max-w-2xl mb-10 font-medium leading-[1.6]">
-          Em 1 hora você aprende as 3 técnicas de penteado em cacheado e crespo que transformam um atendimento de R$80 em um atendimento de R$200 — sem comprar equipamento novo, sem fazer outro curso de R$500, sem depender de sorte.
+        <!-- Background Glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-tr from-terracotta to-orange rounded-full blur-[80px] opacity-0 z-0" id="cardGlowBg"></div>
+
+        <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 relative z-10">
+          
+          <!-- Card 1: Dia a dia -->
+          <div class="anim-card-1 w-full md:w-[260px]">
+            <div class="p-8 rounded-[2rem] bg-paper/5 backdrop-blur-md border border-paper/10 shadow-2xl shadow-ink/50 flex flex-col items-center text-center transition-all duration-500 hover:-translate-y-2 hover:scale-[1.03] hover:bg-paper/10 hover:border-paper/20 cursor-pointer group">
+              <div class="w-12 h-12 rounded-full bg-paper/10 flex items-center justify-center mb-6 anim-item-1 transition-transform duration-500 group-hover:scale-110">
+                <i data-lucide="scissors" class="w-5 h-5 text-paper/60"></i>
+              </div>
+              <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-paper/60 block mb-3 anim-item-1">Penteado do dia a dia</span>
+              <span class="text-4xl font-extrabold text-paper tracking-tight block mb-2 anim-item-1">R$80</span>
+              <span class="text-xs text-paper/50 font-medium anim-item-1">mesmo tempo de cadeira</span>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="hidden md:flex flex-col items-center justify-center anim-divider">
+            <div class="w-[1px] h-16 bg-gradient-to-b from-transparent via-paper/30 to-transparent"></div>
+            <div class="w-8 h-8 rounded-full border border-paper/20 flex items-center justify-center my-3 bg-wine/50 backdrop-blur-sm">
+              <i data-lucide="arrow-right" class="w-4 h-4 text-paper/50"></i>
+            </div>
+            <div class="w-[1px] h-16 bg-gradient-to-b from-transparent via-paper/30 to-transparent"></div>
+          </div>
+          <div class="md:hidden flex items-center justify-center anim-divider h-10">
+             <i data-lucide="arrow-down" class="w-5 h-5 text-paper/30"></i>
+          </div>
+
+          <!-- Card 2: Festa -->
+          <div class="anim-card-2 w-full md:w-[280px]">
+            <div class="p-8 rounded-[2rem] bg-gradient-to-br from-paper/10 to-transparent backdrop-blur-md border border-terracotta/40 shadow-[0_0_40px_rgba(229,133,72,0.15)] flex flex-col items-center text-center relative overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:scale-[1.03] hover:border-orange/60 hover:shadow-[0_0_50px_rgba(229,133,72,0.35)] cursor-pointer group">
+              <!-- Animated glowing orb inside the card -->
+              <div class="absolute -top-10 -right-10 w-32 h-32 bg-orange/30 rounded-full blur-[40px] anim-orb"></div>
+              
+              <div class="relative z-10 w-12 h-12 rounded-full bg-terracotta/20 flex items-center justify-center mb-6 anim-item-2 transition-transform duration-500 group-hover:scale-110">
+                <i data-lucide="sparkles" class="w-6 h-6 text-terracotta"></i>
+              </div>
+              <span class="relative z-10 text-[10px] font-bold uppercase tracking-[0.2em] text-terracotta block mb-3 anim-item-2">Penteado de festa</span>
+              <span class="relative z-10 text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange to-terracotta tracking-tight block mb-2 anim-item-2">R$150–R$300</span>
+              <span class="relative z-10 text-xs text-paper/80 font-medium anim-item-2">o que você já pode cobrar</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- BLOCO 2: Narrative Text -->
+      <div class="max-w-2xl mx-auto text-paper">
+
+        <p class="para-reveal text-[15.5px] md:text-[17px] text-paper/80 leading-[1.65] mb-7 font-normal">
+          Você já sentiu isso: a cliente senta, mostra uma foto no celular — penteado de casamento, cabelo solto com ondas soltas na lateral — e você sorri, diz “consigo sim”, e por dentro já está calculando se a chapinha vai estragar aquele cacho que ela levou anos pra aceitar usar.
+        </p>
+
+        <p class="para-reveal text-[15.5px] md:text-[17px] text-paper/80 leading-[1.65] mb-7 font-normal">
+          Ou pior: você faz. Sai bonito. Mas você sabe, no fundo, que forçou o cabelo a virar outra coisa — e cobrou o mesmo R$80 de sempre por isso.
+        </p>
+
+        <p class="para-reveal text-[15.5px] md:text-[17px] text-paper/80 leading-[1.65] mb-7 font-normal">
+          Enquanto isso, a cabeleireira que sabe trabalhar a curvatura em vez de lutar contra ela cobra R$150, R$200, R$300 pelo mesmo horário de cadeira — e ainda ganha a cliente de volta pra próxima festa, porque penteado bom em cacheado é raro, e cliente que acha uma profissional assim não troca por ninguém.
+        </p>
+
+        <div class="para-reveal closing-quote mt-10">
+          <p class="text-lg md:text-xl lg:text-[22px] font-extrabold leading-[1.35] tracking-tight italic impact-text" id="impact3">
+            “O problema nunca foi o cabelo dela. Foi o curso que você fez, que ensinou penteado pra cabelo liso e chamou de 'penteado'.”
+          </p>
+        </div>
+
+        <!-- Botão de fechamento da seção -->
+        <div class="para-reveal mt-12 flex justify-center">
+          <a href="#cta" class="btn-primary glow-effect bg-orange text-ink hover:bg-paper hover:text-wine border-none shadow-[0_0_25px_rgba(229,133,72,0.5)] hover:shadow-[0_0_35px_rgba(255,250,247,0.7)] py-4 px-9 text-sm md:text-[0.875rem] flex items-center gap-3">Quero Aprender<i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
+  <!-- ===== SECTION 3: AUTHORITY ===== -->
+  <section id="autoridade" class="relative pt-20 pb-20 md:pt-28 md:pb-28 lg:pt-32 lg:pb-32 overflow-hidden bg-paper z-10">
+    <!-- Animated Background Blobs -->
+    <div class="absolute top-10 -left-10 md:-left-20 w-[300px] h-[300px] md:w-[500px] md:h-[500px] bg-terracotta/20 rounded-full blur-[80px] md:blur-[120px] s3-anim-blob-1 pointer-events-none"></div>
+    <div class="absolute bottom-10 -right-10 md:-right-20 w-[400px] h-[400px] md:w-[600px] md:h-[600px] bg-orange/15 rounded-full blur-[100px] md:blur-[150px] s3-anim-blob-2 pointer-events-none"></div>
+
+    <!-- Wave Transition from Wine to Paper -->
+    <div class="absolute top-0 left-0 w-full z-20" style="transform: translateY(-99%);">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none" fill="var(--paper)" class="w-full h-[60px] md:h-[90px] block">
+        <path d="M0,90 L0,30 Q180,0 360,25 Q540,50 720,35 Q900,20 1080,40 Q1260,60 1440,30 L1440,90 Z"></path>
+      </svg>
+    </div>
+
+    <div class="relative z-30 max-w-6xl mx-auto px-6 md:px-8 mt-6 md:mt-10">
+      
+      <div class="flex flex-col lg:flex-row items-center gap-16 lg:gap-24">
+        
+        <!-- COL 1: TEXTO (Desktop left, Mobile first) -->
+        <div class="w-full lg:w-1/2 order-2 lg:order-1">
+          <div class="mb-8">
+            <span class="section-label para-reveal text-terracotta">QUEM ENSINA</span>
+          </div>
+
+          <p class="para-reveal text-2xl md:text-[28px] font-extrabold text-terracotta leading-[1.3] tracking-tight mb-8">
+            Eu sei exatamente onde você trava, porque eu travei ali também.
+          </p>
+
+          <p class="para-reveal text-[15.5px] md:text-[17px] text-ink/80 leading-[1.65] mb-6 font-normal">
+            Sou a Carla. Há mais de 20 anos atendendo cabelo cacheado, fundadora da LaCoque, criadora do Método Carla LaCoque — e já formei milhares de cabeleireiras que hoje cobram diferente de quem não sabe o que eu vou te ensinar agora.
+          </p>
+
+          <p class="para-reveal text-[15.5px] md:text-[17px] text-ink/80 leading-[1.65] mb-6 font-normal">
+            No começo, penteado em cabelo cacheado parecia impossível. A saída mais fácil era sempre a mesma: alisar, prender, disfarçar a curvatura em vez de trabalhar com ela. Isso era o maior erro da minha geração de cabeleireiras — e ainda é o erro que a maioria comete hoje, porque quase nenhum curso de beleza ensina penteado pensando em cabelo que cacheia, ondula ou encrespa de verdade.
+          </p>
+
+          <p class="para-reveal text-[15.5px] md:text-[17px] text-ink/80 leading-[1.65] mb-6 font-normal">
+            Eu criei um jeito diferente. Testado no meu próprio salão, com minhas próprias clientes, ano após ano, até virar método. Hoje esse é o penteado mais pedido — e mais bem pago — da minha agenda.
+          </p>
+
+          <p class="para-reveal text-lg md:text-xl font-bold text-ink leading-[1.4] mb-10">
+            E antes que você pergunte: não, isso não é teoria. É prática. Do jeito que eu uso na cadeira, todos os dias.
+          </p>
+
+          <div class="para-reveal mt-10 flex flex-col md:flex-row items-center md:items-end justify-between gap-8 border-t border-ink/10 pt-8">
+            <span class="block font-light italic text-3xl md:text-4xl text-wine opacity-90 tracking-tight" style="font-family: 'Times New Roman', serif;">Carla LaCoque</span>
+            
+            <a href="#cta" class="btn-primary glow-effect py-4 px-8 text-sm md:text-[0.875rem] shadow-[0_4px_20px_rgba(109,22,32,0.25)] hover:shadow-[0_8px_30px_rgba(109,22,32,0.4)]">Quero Aprender<i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
+          </div>
+        </div>
+
+        <!-- COL 2: FOTO (Desktop right, Mobile second) -->
+        <div class="w-full lg:w-1/2 order-1 lg:order-2 relative">
+          <!-- Wrapper for GSAP clip-path reveal -->
+          <div class="s3-image-mask relative w-full max-w-md mx-auto lg:mx-0">
+            <!-- Organic clip container -->
+            <div class="s3-organic-clip relative aspect-[4/5] bg-ink/5 w-full shadow-2xl shadow-ink/20">
+              <!-- Foto Carla -->
+              <!-- ATENÇÃO: caminho de imagem local, precisa ser substituído por URL pública ou base64 antes de publicar -->
+              <img src="data:image/jpeg;base64,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" alt="Carla LaCoque" class="w-full h-full object-cover origin-center transform scale-105">
+              
+              <!-- Duotone Overlay (terracotta/wine nas sombras) -->
+              <div class="absolute inset-0 bg-gradient-to-tr from-wine/30 to-terracotta/10 mix-blend-multiply pointer-events-none"></div>
+              <div class="absolute inset-0 bg-orange/10 mix-blend-overlay pointer-events-none"></div>
+            </div>
+
+            <!-- Spinning Badge with solid readable background -->
+            <div class="absolute -left-4 -bottom-4 md:-left-8 md:-bottom-8 z-20 w-32 h-32 md:w-40 md:h-40 bg-paper/95 backdrop-blur-sm rounded-full shadow-2xl shadow-ink/15 border border-ink/5">
+              <div class="w-full h-full animate-[spin_25s_linear_infinite]">
+                <svg viewBox="0 0 100 100" class="w-full h-full text-wine fill-current opacity-90">
+                  <path id="circlePathS3" d="M 50, 50 m -35, 0 a 35,35 0 1,1 70,0 a 35,35 0 1,1 -70,0" fill="none" />
+                  <text font-size="11.5" font-weight="900" letter-spacing="1.2">
+                    <textPath href="#circlePathS3" startOffset="0%">CRIADORA DO MÉTODO • CRIADORA DO MÉTODO • </textPath>
+                  </text>
+                </svg>
+              </div>
+              <!-- Wax dot -->
+              <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-12 h-12 md:w-14 md:h-14 bg-terracotta rounded-full flex items-center justify-center shadow-inner">
+                <i data-lucide="award" class="w-5 h-5 md:w-6 md:h-6 text-paper"></i>
+              </div>
+            </div>
+
+            <!-- Credibility Numbers -->
+            <div class="s3-cred-box absolute top-12 -right-4 md:-right-8 z-20 bg-paper p-4 md:p-5 rounded-2xl shadow-2xl shadow-ink/10 flex flex-col items-center border border-ink/5 transform transition-transform hover:-translate-y-1">
+              <span class="text-3xl md:text-4xl font-extrabold text-wine tracking-tighter"><span id="s3-counter-1">0</span>+</span>
+              <span class="text-[9px] md:text-[10px] font-bold tracking-widest uppercase text-ink/60 mt-1">Anos de experiência</span>
+            </div>
+
+            <div class="s3-cred-box absolute bottom-24 -right-2 md:-right-6 z-20 bg-paper p-4 md:p-5 rounded-2xl shadow-2xl shadow-ink/10 flex flex-col items-center border border-ink/5 transform transition-transform hover:-translate-y-1">
+              <span class="text-3xl md:text-4xl font-extrabold text-terracotta tracking-tighter"><span id="s3-counter-2">0</span>+</span>
+              <span class="text-[9px] md:text-[10px] font-bold tracking-widest uppercase text-ink/60 mt-1">Alunas formadas</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ===== SECTION 4: O MÉTODO ===== -->
+  <section id="metodo" class="relative py-24 md:py-32 lg:py-40 overflow-hidden bg-wine z-10">
+    <!-- Parallax Background -->
+    <div class="absolute inset-0 z-0 s4-bg-parallax" style="height: 120%; top: -10%;">
+      <!-- SUBSTITUIR: foto placeholder, trocar por still real do salão da Carla -->
+      <img src="https://images.unsplash.com/photo-1580618672591-eb180b1a973f?q=80&w=2000&auto=format&fit=crop" alt="Cabelo cacheado texture" class="w-full h-full object-cover opacity-80">
+      <!-- Dark overlay -->
+      <div class="absolute inset-0 bg-wine/80 mix-blend-multiply"></div>
+      <div class="absolute inset-0 bg-ink/70 mix-blend-overlay"></div>
+      <div class="absolute inset-0 bg-gradient-to-b from-ink/90 via-ink/50 to-ink/90"></div>
+    </div>
+    
+    <!-- Wave Transition from Paper -->
+    <div class="section-wave-top z-20 absolute top-0 left-0 w-full">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none" fill="var(--paper)" class="w-full h-12 md:h-20 lg:h-24">
+        <path d="M0,0 L0,60 Q180,90 360,65 Q540,40 720,55 Q900,70 1080,50 Q1260,30 1440,60 L1440,0 Z"></path>
+      </svg>
+    </div>
+
+    <div class="relative z-30 max-w-5xl mx-auto px-6 md:px-8 mt-10">
+      
+      <!-- Section Header -->
+      <div class="text-center mb-16 md:mb-24">
+        <span class="section-label para-reveal text-blush/80">O MÉTODO</span>
+        <h2 class="para-reveal text-3xl md:text-5xl lg:text-6xl font-extrabold text-paper leading-[1.1] tracking-tighter mt-6">
+          3 técnicas. 1 hora. <br class="hidden md:block">
+          <span class="text-transparent bg-clip-text bg-gradient-to-r from-terracotta to-orange">Pra cobrar diferente</span> a partir do próximo atendimento.
+        </h2>
+      </div>
+
+      <!-- Content List -->
+      <div class="relative max-w-3xl mx-auto s4-list-container pb-8" id="s4-list-container">
+        
+        <!-- Vertical Line Background -->
+        <div class="absolute left-[30px] md:left-[44px] top-4 bottom-10 w-[2px] bg-paper/10 rounded-full"></div>
+        <!-- Vertical Line Progress -->
+        <div class="absolute left-[30px] md:left-[44px] top-4 bottom-10 w-[2px] bg-gradient-to-b from-terracotta to-orange origin-top scale-y-0 rounded-full" id="s4-progress-line"></div>
+        
+        <!-- ITEM 1 -->
+        <div class="s4-item relative flex items-start gap-8 md:gap-12 mb-16 group">
+          <!-- Number + Icon -->
+          <div class="relative z-10 flex flex-col items-center bg-transparent pt-1 min-w-[60px] md:min-w-[90px]">
+            <span class="text-4xl md:text-5xl font-extrabold s4-num">01</span>
+            <div class="mt-4 p-3 rounded-full bg-paper/5 border border-paper/10 s4-icon-draw text-terracotta shadow-lg shadow-ink/50 backdrop-blur-sm">
+              <i data-lucide="scissors" class="w-5 h-5 md:w-6 md:h-6"></i>
+            </div>
+          </div>
+          <!-- Text -->
+          <div class="pt-3 s4-text-block transition-transform duration-300 group-hover:translate-x-2">
+            <p class="text-lg md:text-xl font-bold text-paper leading-[1.4] mb-2">
+              <span class="text-terracotta">Preparar qualquer curvatura para o penteado</span> — ondulado, cacheado ou crespo
+            </p>
+            <p class="text-[15.5px] md:text-[17px] text-paper/70 leading-[1.6]">
+              com definição que dura a festa inteira, sem o cabelo "voltar ao normal" depois de duas horas.
+            </p>
+          </div>
+        </div>
+
+        <!-- ITEM 2 -->
+        <div class="s4-item relative flex items-start gap-8 md:gap-12 mb-16 group">
+          <!-- Number + Icon -->
+          <div class="relative z-10 flex flex-col items-center bg-transparent pt-1 min-w-[60px] md:min-w-[90px]">
+            <span class="text-4xl md:text-5xl font-extrabold s4-num">02</span>
+            <div class="mt-4 p-3 rounded-full bg-paper/5 border border-paper/10 s4-icon-draw text-terracotta shadow-lg shadow-ink/50 backdrop-blur-sm">
+              <i data-lucide="eye" class="w-5 h-5 md:w-6 md:h-6"></i>
+            </div>
+          </div>
+          <!-- Text -->
+          <div class="pt-3 s4-text-block transition-transform duration-300 group-hover:translate-x-2">
+            <p class="text-lg md:text-xl font-bold text-paper leading-[1.4] mb-2">
+              <span class="text-terracotta">Ler o rosto e o estilo antes de decidir o penteado</span>
+            </p>
+            <p class="text-[15.5px] md:text-[17px] text-paper/70 leading-[1.6]">
+              pra parar de escolher no improviso e começar a entregar exatamente o que a cliente imaginou (ou melhor).
+            </p>
+          </div>
+        </div>
+
+        <!-- ITEM 3 -->
+        <div class="s4-item relative flex items-start gap-8 md:gap-12 mb-16 group">
+          <!-- Number + Icon -->
+          <div class="relative z-10 flex flex-col items-center bg-transparent pt-1 min-w-[60px] md:min-w-[90px]">
+            <span class="text-4xl md:text-5xl font-extrabold s4-num">03</span>
+            <div class="mt-4 p-3 rounded-full bg-paper/5 border border-paper/10 s4-icon-draw text-terracotta shadow-lg shadow-ink/50 backdrop-blur-sm">
+              <i data-lucide="flame" class="w-5 h-5 md:w-6 md:h-6"></i>
+            </div>
+          </div>
+          <!-- Text -->
+          <div class="pt-3 s4-text-block transition-transform duration-300 group-hover:translate-x-2">
+            <p class="text-lg md:text-xl font-bold text-paper leading-[1.4] mb-2">
+              <span class="text-terracotta">Usar o babyliss em cabelo natural sem violência</span>
+            </p>
+            <p class="text-[15.5px] md:text-[17px] text-paper/70 leading-[1.6]">
+              moldando a curva em vez de apagar ela, preservando a saúde do fio que sua cliente passou anos cuidando.
+            </p>
+          </div>
+        </div>
+
+        <!-- ITEM 4 -->
+        <div class="s4-item relative flex items-start gap-8 md:gap-12 mb-16 group">
+          <!-- Number + Icon -->
+          <div class="relative z-10 flex flex-col items-center bg-transparent pt-1 min-w-[60px] md:min-w-[90px]">
+            <span class="text-4xl md:text-5xl font-extrabold s4-num">04</span>
+            <div class="mt-4 p-3 rounded-full bg-paper/5 border border-paper/10 s4-icon-draw text-terracotta shadow-lg shadow-ink/50 backdrop-blur-sm">
+              <i data-lucide="sparkles" class="w-5 h-5 md:w-6 md:h-6"></i>
+            </div>
+          </div>
+          <!-- Text -->
+          <div class="pt-3 s4-text-block transition-transform duration-300 group-hover:translate-x-2">
+            <p class="text-lg md:text-xl font-bold text-paper leading-[1.4] mb-2">
+              <span class="text-terracotta">Aplicar acessórios como quem sabe o que está fazendo</span>
+            </p>
+            <p class="text-[15.5px] md:text-[17px] text-paper/70 leading-[1.6]">
+              — presilha, tiara, ponto de luz — como o detalhe que separa "penteado bonito" de "penteado que a madrinha do casamento pede o contato de quem fez".
+            </p>
+          </div>
+        </div>
+
+        <!-- ITEM 5 -->
+        <div class="s4-item relative flex items-start gap-8 md:gap-12 mb-4 group">
+          <!-- Number + Icon -->
+          <div class="relative z-10 flex flex-col items-center bg-transparent pt-1 min-w-[60px] md:min-w-[90px]">
+            <span class="text-4xl md:text-5xl font-extrabold s4-num">05</span>
+            <div class="mt-4 p-3 rounded-full bg-paper/5 border border-paper/10 s4-icon-draw text-terracotta shadow-lg shadow-ink/50 backdrop-blur-sm">
+              <i data-lucide="crown" class="w-5 h-5 md:w-6 md:h-6"></i>
+            </div>
+          </div>
+          <!-- Text -->
+          <div class="pt-3 s4-text-block transition-transform duration-300 group-hover:translate-x-2">
+            <p class="text-lg md:text-xl font-bold text-paper leading-[1.4] mb-2">
+              <span class="text-terracotta">Dominar os 3 modelos que mais vendem em qualquer agenda de salão:</span>
+            </p>
+            <p class="text-[15.5px] md:text-[17px] text-paper/70 leading-[1.6]">
+              coque baixo, semi preso, trança de raiz lateral — versáteis o bastante pra noiva, madrinha, formanda, debutante ou qualquer festa que apareça na sua semana.
+            </p>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Reassurance Block -->
+      <div class="mt-20 max-w-4xl mx-auto py-12 md:py-16 text-center s4-reassurance border-t border-b border-paper/10 relative">
+        <div class="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 bg-wine px-4">
+          <div class="inline-flex items-center justify-center w-12 h-12 rounded-full bg-paper/5 text-terracotta shadow-inner border border-paper/10">
+            <i data-lucide="info" class="w-6 h-6"></i>
+          </div>
+        </div>
+        <p class="text-[14px] md:text-[15px] text-paper/60 leading-[1.7] font-light italic mt-4 md:px-8 max-w-3xl mx-auto">
+          "Nunca fez penteado em cacheado antes? Sem problema. O método começa do zero — literalmente do primeiro toque no cabelo até a última presilha. Se você já sabe segurar uma escova e um babyliss, você já tem o que precisa pra sair sabendo aplicar hoje."
         </p>
         
-        <!-- CTAs e Microcopy -->
-        <div class="stagger-element flex flex-col gap-4">
-          <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
-            <a href="#" class="btn-primary w-full sm:w-auto shadow-xl shadow-wine/20 text-center justify-center group">
-              Quero aprender agora por R$27,90
-              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
-            </a>
-            
-            <a href="#" class="btn-outline w-full sm:w-auto text-center justify-center">
-              Ver o que você vai aprender
-            </a>
-          </div>
-          
-          <!-- Microcopy -->
-          <div class="flex items-center justify-center sm:justify-start gap-1.5 text-[11px] text-ink/60 font-bold tracking-widest uppercase mt-2">
-            <i data-lucide="smartphone" class="w-3.5 h-3.5 text-terracotta"></i>
-            Acesso imediato · Aplicação em 1 hora · Direto no celular
-          </div>
+        <!-- CTA BUTTON -->
+        <div class="mt-12 md:mt-14">
+          <a href="#cta" class="inline-flex items-center btn-primary glow-effect py-4 px-8 md:px-10 text-sm md:text-[0.875rem] shadow-[0_4px_20px_rgba(109,22,32,0.25)] hover:shadow-[0_8px_30px_rgba(109,22,32,0.4)]">Quero Aprender<i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+          </a>
         </div>
       </div>
 
-      <!-- Coluna de Imagem/Produto (Direita no Desktop, Baixo no Mobile) -->
-      <div class="stagger-element lg:col-span-6 xl:col-span-5 order-1 lg:order-2 relative flex justify-center lg:justify-end w-full">
-        <!-- Elementos de Decoração de Fundo -->
-        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-gradient-to-tr from-blush via-paper to-transparent rounded-full -z-10 blur-3xl opacity-80 pointer-events-none"></div>
-        <div class="absolute -top-6 -right-6 w-32 h-32 border border-terracotta/20 rounded-full animate-[spin_10s_linear_infinite] pointer-events-none"></div>
-        <div class="absolute -bottom-8 -left-8 w-40 h-40 border border-orange/20 rounded-full animate-[spin_15s_linear_infinite_reverse] pointer-events-none"></div>
-        
-        <!-- Container com Efeito Tilt 3D -->
-        <div class="tilt-element relative w-full max-w-sm sm:max-w-md lg:max-w-full aspect-[4/5] rounded-[32px] overflow-hidden shadow-2xl shadow-wine/15 glow-effect bg-ink/5" 
-             data-tilt 
-             data-tilt-max="4" 
-             data-tilt-speed="400" 
-             data-tilt-perspective="1000"
-             data-tilt-glare="true" 
-             data-tilt-max-glare="0.2">
-             
-          <div class="absolute inset-0 bg-gradient-to-b from-transparent to-ink/40 z-10 pointer-events-none rounded-[32px]"></div>
-          
-          <!-- SUBSTITUIR: foto placeholder, trocar por still real da Carla -->
-          <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=1974&auto=format&fit=crop" 
-               alt="Penteado em cabelo cacheado placeholder" 
-               class="w-full h-full object-cover rounded-[32px] scale-[1.02] transform transition-transform duration-700 hover:scale-105" />
-          
-          <!-- Badge flutuante na Imagem -->
-          <div class="absolute bottom-6 left-6 z-20 glass-panel !bg-paper/95 px-5 py-3.5 rounded-2xl shadow-xl border-white/50 flex items-center gap-4 transform translate-y-2 opacity-100">
-            <div class="w-12 h-12 rounded-full bg-orange/15 flex items-center justify-center relative overflow-hidden">
-              <div class="absolute inset-0 bg-orange/20 animate-ping opacity-50"></div>
-              <i data-lucide="trending-up" class="w-5 h-5 text-terracotta relative z-10"></i>
-            </div>
-            <div>
-              <p class="text-[10px] font-bold text-terracotta uppercase tracking-[0.2em] mb-0.5">Alto Lucro</p>
-              <p class="text-base font-extrabold text-wine leading-none tracking-tight">Atendimento 2.5x Maior</p>
-            </div>
-          </div>
-        </div>
-      </div>
-      
     </div>
-  </main>
+  </section>
 
-  <!-- Indicador de Scroll -->
-  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 scroll-indicator">
-    <span class="text-[9px] uppercase tracking-[0.2em] text-terracotta font-bold">Descubra</span>
-    <div class="w-[2px] h-8 bg-gradient-to-b from-terracotta to-transparent rounded-full"></div>
-  </div>
 
+  
+  <!-- ===== SECTION 5: A OFERTA ===== -->
+  <section id="oferta" class="relative py-28 md:py-36 lg:py-48 overflow-hidden bg-paper z-10">
+    
+    <!-- Background Particles & Glass Overlay -->
+    <div class="absolute inset-0 w-full h-full overflow-hidden">
+      <!-- We reuse the blob animations but with much richer/darker opacity in the background -->
+      <div class="s5-blob s5-blob-1" style="width: 800px; height: 800px; opacity: 0.15; filter: blur(120px);"></div>
+      <div class="s5-blob s5-blob-2" style="width: 600px; height: 600px; opacity: 0.2; filter: blur(100px);"></div>
+      <div class="s5-blob s5-blob-3" style="width: 900px; height: 900px; opacity: 0.1; filter: blur(150px);"></div>
+      <div class="absolute inset-0 bg-paper/60 backdrop-blur-[60px]"></div>
+      
+      <!-- Subtle grain overlay for texture -->
+      <div class="absolute inset-0 opacity-[0.04] mix-blend-overlay pointer-events-none" style="background-image: url('data:image/svg+xml,%3Csvg viewBox=%220 0 200 200%22 xmlns=%22http://www.w3.org/2000/svg%22%3E%3Cfilter id=%22noiseFilter%22%3E%3CfeTurbulence type=%22fractalNoise%22 baseFrequency=%220.65%22 numOctaves=%223%22 stitchTiles=%22stitch%22/%3E%3C/filter%3E%3Crect width=%22100%25%22 height=%22100%25%22 filter=%22url(%23noiseFilter)%22/%3E%3C/svg%3E');"></div>
+    </div>
+
+    <!-- Wave Transition from Wine -->
+    <div class="section-wave-top z-20">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none" fill="var(--wine)">
+        <path d="M0,0 L0,60 Q180,90 360,65 Q540,40 720,55 Q900,70 1080,50 Q1260,30 1440,60 L1440,0 Z"></path>
+      </svg>
+    </div>
+
+    <div class="relative z-30 max-w-6xl mx-auto px-6 md:px-8 mt-8 text-center">
+      
+      <!-- Section Label -->
+      <div class="mb-6">
+        <span class="section-label para-reveal text-terracotta tracking-[0.2em] font-black uppercase text-sm">O Investimento</span>
+      </div>
+
+      <!-- Main Headline -->
+      <h2 class="para-reveal text-3xl md:text-5xl font-extrabold text-ink leading-[1.2] tracking-tight mb-20 max-w-4xl mx-auto">
+        Técnicas que cobram R$200, <br class="hidden md:block" /> por um valor que não paga nem o seu material.
+      </h2>
+
+      <!-- THE CLIMAX: Dark Glass Pricing Card -->
+      <div class="para-reveal relative max-w-3xl mx-auto mb-24 group">
+        <!-- Intense Glow behind the card -->
+        <div class="absolute -inset-1 bg-gradient-to-r from-wine via-orange to-terracotta rounded-[40px] blur-2xl opacity-40 group-hover:opacity-70 transition-opacity duration-1000 animate-pulse-slow"></div>
+        
+        <!-- The Card -->
+        <div class="relative bg-ink border border-wine/30 rounded-[40px] p-10 md:p-16 lg:p-20 overflow-hidden shadow-2xl shadow-wine/40 flex flex-col items-center">
+          
+          <!-- Inner card subtle glow -->
+          <div class="absolute top-0 left-1/2 -translate-x-1/2 w-[150%] h-40 bg-gradient-to-b from-orange/20 to-transparent blur-2xl pointer-events-none"></div>
+
+          <span class="uppercase tracking-[0.2em] text-orange font-bold text-sm mb-4 relative z-10">Acesso Completo</span>
+          
+          <h3 class="text-paper/80 text-lg md:text-xl font-medium mb-2 relative z-10">Por apenas</h3>
+
+          <!-- Dramatic Price Reveal Inside Card -->
+          <div class="price-container my-6 relative z-10">
+            <div class="flex items-start justify-center gap-2 font-black text-transparent bg-clip-text bg-gradient-to-br from-orange via-terracotta to-wine tracking-tighter" id="s5-price-block">
+              <span class="text-4xl md:text-6xl mt-2 md:mt-4 opacity-90 text-orange">R$</span>
+              <div class="text-[100px] leading-none md:text-[160px] lg:text-[200px] drop-shadow-lg">
+                <span id="s5-price-val">00</span><span class="text-6xl md:text-[90px] lg:text-[110px]">,90</span>
+              </div>
+            </div>
+          </div>
+
+          <p class="text-paper/60 text-base md:text-lg max-w-lg mx-auto relative z-10">
+            O primeiro penteado que você fizer já paga o curso <strong class="text-paper">e sobra troco</strong>.
+          </p>
+
+          <!-- Magnetic CTA -->
+          <div class="mt-14 w-full flex justify-center relative z-20">
+            <a href="#cta" id="magnetic-cta" class="magnetic-btn w-full md:w-auto inline-flex justify-center items-center glow-effect bg-gradient-to-r from-orange to-terracotta text-paper border-none py-5 md:py-6 px-10 md:px-16 rounded-full text-lg font-black shadow-[0_0_40px_rgba(229,133,72,0.5)] hover:shadow-[0_0_60px_rgba(229,133,72,0.8)] transition-all duration-300 gap-4 group">
+              <span class="relative z-10">Quero Aprender</span>
+              <i data-lucide="arrow-right" class="w-6 h-6 relative z-10 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+          </div>
+
+          <!-- Social Proof Badge attached to button -->
+          <div class="absolute bottom-6 md:bottom-10 left-1/2 -translate-x-1/2 md:translate-x-0 md:left-auto md:right-10 flex items-center gap-3 bg-white/10 backdrop-blur-md px-4 py-2 rounded-full border border-white/10">
+            <div class="flex -space-x-2">
+              <div class="w-6 h-6 rounded-full bg-orange/40 flex items-center justify-center"><i data-lucide="star" class="w-3 h-3 text-paper"></i></div>
+            </div>
+            <span class="text-xs font-bold text-paper/80 uppercase tracking-wider">+4.000 Alunas</span>
+          </div>
+          
+        </div>
+      </div>
+
+
+      <!-- O que você recebe: Grid de Cartões -->
+      <div class="max-w-5xl mx-auto text-left relative z-10">
+        <div class="text-center mb-16">
+          <span class="section-label">O que você leva</span>
+          <h3 class="text-3xl md:text-4xl font-extrabold text-ink tracking-tight">Tudo que você precisa pra começar hoje</h3>
+        </div>
+        
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6" id="s5-features">
+          
+          <!-- Card 1 -->
+          <div class="s5-feat-item relative overflow-hidden bg-gradient-to-br from-white/90 to-white/50 backdrop-blur-xl p-8 rounded-[32px] hover:-translate-y-2 transition-transform duration-500 shadow-xl shadow-ink/5 border border-white/60 group">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange to-wine opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <i data-lucide="smartphone" class="absolute -bottom-6 -right-6 w-32 h-32 text-wine/5 rotate-12 transition-transform duration-700 group-hover:rotate-0 group-hover:scale-110 pointer-events-none"></i>
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-terracotta to-wine flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform duration-300 relative z-10">
+              <i data-lucide="smartphone" class="w-6 h-6 text-paper s5-feat-icon"></i>
+            </div>
+            <h4 class="text-xl font-extrabold text-wine mb-3 relative z-10">Acesso Imediato</h4>
+            <p class="text-[16px] text-ink/70 font-medium leading-[1.6] relative z-10">
+              Assista ao curso completo direto no seu celular ou computador assim que a compra for aprovada.
+            </p>
+          </div>
+          
+          <!-- Card 2 -->
+          <div class="s5-feat-item relative overflow-hidden bg-gradient-to-br from-white/90 to-white/50 backdrop-blur-xl p-8 rounded-[32px] hover:-translate-y-2 transition-transform duration-500 shadow-xl shadow-ink/5 border border-white/60 group">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange to-wine opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <i data-lucide="scissors" class="absolute -bottom-6 -right-6 w-32 h-32 text-wine/5 rotate-12 transition-transform duration-700 group-hover:rotate-0 group-hover:scale-110 pointer-events-none"></i>
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-terracotta to-wine flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform duration-300 relative z-10">
+              <i data-lucide="scissors" class="w-6 h-6 text-paper s5-feat-icon"></i>
+            </div>
+            <h4 class="text-xl font-extrabold text-wine mb-3 relative z-10">As 3 Técnicas Fundamentais</h4>
+            <p class="text-[16px] text-ink/70 font-medium leading-[1.6] relative z-10">
+              Penteados em cabelos ondulados, cacheados e crespos explicados do absoluto zero, passo a passo.
+            </p>
+          </div>
+          
+          <!-- Card 3 -->
+          <div class="s5-feat-item relative overflow-hidden bg-gradient-to-br from-white/90 to-white/50 backdrop-blur-xl p-8 rounded-[32px] hover:-translate-y-2 transition-transform duration-500 shadow-xl shadow-ink/5 border border-white/60 group">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange to-wine opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <i data-lucide="crown" class="absolute -bottom-6 -right-6 w-32 h-32 text-wine/5 rotate-12 transition-transform duration-700 group-hover:rotate-0 group-hover:scale-110 pointer-events-none"></i>
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-terracotta to-wine flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform duration-300 relative z-10">
+              <i data-lucide="crown" class="w-6 h-6 text-paper s5-feat-icon"></i>
+            </div>
+            <h4 class="text-xl font-extrabold text-wine mb-3 relative z-10">Os 3 Modelos Mais Pedidos</h4>
+            <p class="text-[16px] text-ink/70 font-medium leading-[1.6] relative z-10">
+              Aprenda a executar o coque baixo, o semi preso e a trança de raiz lateral com perfeição e durabilidade.
+            </p>
+          </div>
+          
+          <!-- Card 4 -->
+          <div class="s5-feat-item relative overflow-hidden bg-gradient-to-br from-white/90 to-white/50 backdrop-blur-xl p-8 rounded-[32px] hover:-translate-y-2 transition-transform duration-500 shadow-xl shadow-ink/5 border border-white/60 group">
+            <div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-orange to-wine opacity-0 group-hover:opacity-100 transition-opacity duration-500"></div>
+            <i data-lucide="zap" class="absolute -bottom-6 -right-6 w-32 h-32 text-wine/5 rotate-12 transition-transform duration-700 group-hover:rotate-0 group-hover:scale-110 pointer-events-none"></i>
+            <div class="w-14 h-14 rounded-2xl bg-gradient-to-br from-terracotta to-wine flex items-center justify-center mb-6 shadow-md group-hover:scale-110 transition-transform duration-300 relative z-10">
+              <i data-lucide="zap" class="w-6 h-6 text-paper s5-feat-icon"></i>
+            </div>
+            <h4 class="text-xl font-extrabold text-wine mb-3 relative z-10">Método 100% Prático</h4>
+            <p class="text-[16px] text-ink/70 font-medium leading-[1.6] relative z-10">
+              Sem teoria inútil. Sem enrolação. Foque no que realmente faz diferença quando a cliente senta na sua cadeira.
+            </p>
+          </div>
+          
+        </div>
+      </div>
+
+      <!-- Final CTA for Section 5 -->
+      <div class="mt-20 flex justify-center relative z-20 para-reveal">
+        <a href="#cta" class="inline-flex items-center btn-primary glow-effect py-4 px-10 text-[0.9rem] shadow-[0_4px_20px_rgba(109,22,32,0.25)] hover:shadow-[0_8px_30px_rgba(109,22,32,0.4)]">Quero Aprender<i data-lucide="arrow-right" class="w-5 h-5 ml-2"></i>
+        </a>
+      </div>
+
+    </div>
+  </section>
+
+  
+  <!-- ===== SECTION 6: FAQ & FECHAMENTO ===== -->
+  <section id="faq" class="relative py-24 md:py-32 bg-paper z-10 border-t border-wine/5">
+    <div class="max-w-3xl mx-auto px-6 md:px-8">
+      
+      <!-- FAQ Header -->
+      <div class="text-center mb-16">
+        <span class="section-label para-reveal">Dúvidas Frequentes</span>
+        <h2 class="para-reveal text-3xl md:text-4xl font-extrabold text-ink tracking-tight mt-2">Ainda com alguma dúvida?</h2>
+      </div>
+
+      <!-- FAQ Accordion -->
+      <div class="bg-white rounded-3xl p-6 md:p-8 shadow-xl shadow-ink/5 border border-wine/10 mb-24 para-reveal">
+        
+        <!-- Item 1 -->
+        <div class="faq-item para-reveal" style="transition-delay: 100ms;">
+          <button class="faq-question" aria-expanded="false">
+            <span class="pr-6 text-[16px] md:text-lg">Nunca fiz penteado em cacheado. Isso é pra mim mesmo assim?</span>
+            <i data-lucide="plus" class="faq-icon"></i>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Sim. O método foi construído pensando em quem está começando do zero nessa técnica específica — não assume que você já sabe nada além do básico de escova e babyliss.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 2 -->
+        <div class="faq-item para-reveal" style="transition-delay: 150ms;">
+          <button class="faq-question" aria-expanded="false">
+            <span class="pr-6 text-[16px] md:text-lg">Em quanto tempo eu aprendo?</span>
+            <i data-lucide="plus" class="faq-icon"></i>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                O curso é direto ao ponto: em 1 hora você já sai sabendo aplicar as 3 técnicas na prática.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 3 -->
+        <div class="faq-item para-reveal" style="transition-delay: 200ms;">
+          <button class="faq-question" aria-expanded="false">
+            <span class="pr-6 text-[16px] md:text-lg">Funciona só para cabelo bem cacheado, ou serve pra ondulado e crespo também?</span>
+            <i data-lucide="plus" class="faq-icon"></i>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                As 3 técnicas cobrem ondulado, cacheado e crespo — você não precisa de um curso separado para cada tipo de curvatura.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 4 -->
+        <div class="faq-item para-reveal" style="transition-delay: 250ms;">
+          <button class="faq-question" aria-expanded="false">
+            <span class="pr-6 text-[16px] md:text-lg">Eu já sei fazer alguns penteados. Vale a pena mesmo assim?</span>
+            <i data-lucide="plus" class="faq-icon"></i>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Vale — o método reforça a técnica que você já tem e te dá 3 modelos prontos, testados, pra cobrar mais sem depender de improviso.
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Item 5 -->
+        <div class="faq-item para-reveal" style="transition-delay: 300ms;">
+          <button class="faq-question" aria-expanded="false">
+            <span class="pr-6 text-[16px] md:text-lg">Como eu acesso o curso depois de comprar?</span>
+            <i data-lucide="plus" class="faq-icon"></i>
+          </button>
+          <div class="faq-answer-wrapper">
+            <div class="faq-answer">
+              <div class="faq-answer-inner">
+                Assim que o pagamento é confirmado, o acesso chega no seu e-mail e fica disponível direto na plataforma.
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+
+
+    </div>
+  </section>
+
+
+  
+  <!-- ===== SCRIPTS ===== -->
   <script>
-    // Inicializar Ícones (Lucide)
+    // Initialize Lucide Icons
     lucide.createIcons();
 
-    // GSAP Animações de Entrada
-    document.addEventListener("DOMContentLoaded", () => {
-      // 1. Geração das partículas dinâmicas no background
-      const particlesContainer = document.getElementById('particles');
-      const particleCount = 20;
-      
-      for (let i = 0; i < particleCount; i++) {
-        const particle = document.createElement('div');
-        particle.classList.add('particle');
-        
-        // Propriedades randômicas para posição, tamanho e velocidade
-        const size = Math.random() * 8 + 4; // Entre 4px e 12px
-        const left = Math.random() * 100; // Entre 0% e 100% horizontal
-        const delay = Math.random() * 25; // Delay inicial aleatório
-        const duration = Math.random() * 15 + 15; // Duração entre 15s e 30s
-        
-        particle.style.width = `${size}px`;
-        particle.style.height = `${size}px`;
-        particle.style.left = `${left}%`;
-        particle.style.animationDelay = `-${delay}s`;
-        particle.style.animationDuration = `${duration}s`;
-        
-        particlesContainer.appendChild(particle);
+    // GSAP Registration
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ---- NAVBAR: Glass blur on scroll ----
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        navbar.classList.add('navbar-scrolled');
+      } else {
+        navbar.classList.remove('navbar-scrolled');
       }
+    });
 
-      // 2. Timeline GSAP para o Stagger de elementos do Hero
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-      
-      // Navbar entra de cima
-      tl.from("#navbar", { y: -20, opacity: 0, duration: 0.6 }, "+=0.2");
+    // ---- MOBILE MENU TOGGLE ----
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
 
-      // Textos, botões e imagem entram em sequência de baixo para cima
-      tl.fromTo(".stagger-element", 
-        { y: 30, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, stagger: 0.12 },
-        "-=0.3"
+    // ---- HERO ENTRANCE: GSAP Stagger Timeline ----
+    const heroTl = gsap.timeline({
+      defaults: {
+        ease: 'power4.out',
+        duration: 1
+      },
+      delay: 0.3
+    });
+
+    heroTl
+      .fromTo('#anim-kicker', 
+        { y: 30, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 0.8 }
+      )
+      .fromTo('#anim-headline', 
+        { y: 40, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 1 }, 
+        '-=0.5'
+      )
+      .fromTo('#anim-line', 
+        { scaleX: 0, opacity: 0, transformOrigin: 'left center' }, 
+        { scaleX: 1, opacity: 1, duration: 0.6 }, 
+        '-=0.5'
+      )
+      .fromTo('#anim-sub', 
+        { y: 30, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 0.9 }, 
+        '-=0.3'
+      )
+      .fromTo('#anim-cta', 
+        { y: 25, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 0.8 }, 
+        '-=0.4'
+      )
+      .fromTo('#anim-micro', 
+        { y: 15, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 0.6 }, 
+        '-=0.3'
+      )
+      .fromTo('#anim-image', 
+        { x: 60, opacity: 0 }, 
+        { x: 0, opacity: 1, duration: 1.2, ease: 'power3.out' }, 
+        0.5  // starts at 0.5s absolute for a staggered feel
       );
 
-      // 3. Efeito blur/sombra no Navbar ao rolar a página
-      const navbar = document.getElementById('navbar');
+    // ---- VANILLA TILT on Hero Image ----
+    const tiltEl = document.getElementById('heroTilt');
+    if (tiltEl && window.innerWidth >= 1024) {
+      VanillaTilt.init(tiltEl, {
+        max: 6,
+        speed: 800,
+        scale: 1.02,
+        glare: true,
+        'max-glare': 0.12,
+        perspective: 1200,
+        gyroscope: false
+      });
+    }
+
+    // ---- PARTICLES CREATION ----
+    const particlesContainer = document.getElementById('particles');
+    const particleCount = window.innerWidth < 768 ? 15 : 30;
+    for (let i = 0; i < particleCount; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 20 + 6;
+      p.style.width = size + 'px';
+      p.style.height = size + 'px';
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.animationDelay = (Math.random() * 25) + 's';
+      p.style.animationDuration = (Math.random() * 15 + 18) + 's';
+      // Some particles use wine, some use orange for variety
+      if (i % 4 === 0) {
+        p.style.background = 'rgba(109, 22, 32, 0.08)';
+      } else if (i % 3 === 0) {
+        p.style.background = 'rgba(229, 133, 72, 0.1)';
+      }
+      particlesContainer.appendChild(p);
+    }
+
+    // ---- SCROLL INDICATOR: Fade out on scroll ----
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    if (scrollIndicator) {
       window.addEventListener('scroll', () => {
-        if (window.scrollY > 10) {
-          navbar.classList.add('shadow-lg');
-          navbar.style.background = 'rgba(255, 250, 247, 0.85)';
-          navbar.style.paddingTop = '1rem';
-          navbar.style.paddingBottom = '1rem';
-        } else {
-          navbar.classList.remove('shadow-lg');
-          navbar.style.background = 'rgba(255, 250, 247, 0.75)';
-          navbar.style.paddingTop = '1rem';
-          navbar.style.paddingBottom = '1rem';
-        }
+        const opacity = Math.max(0, 1 - window.scrollY / 200);
+        scrollIndicator.style.opacity = opacity;
+      });
+    }
+
+    // ========================================
+    // SECTION 2: PAIN / IDENTIFICATION — GSAP
+    // ========================================
+
+    // ---- 1. CASCADING PARAGRAPH REVEALS ----
+    const paraReveals = document.querySelectorAll('.para-reveal');
+    paraReveals.forEach((el, i) => {
+      gsap.to(el, {
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          toggleActions: 'play none none reverse'
+        },
+        y: 0,
+        opacity: 1,
+        duration: 0.9,
+        ease: 'power3.out',
+        delay: (i % 3) * 0.1 // Stagger feeling
       });
     });
+
+    // ---- 2. PARALLAX on section background ----
+    const s2Bg = document.getElementById('s2-bg-parallax');
+    if (s2Bg) {
+      gsap.to(s2Bg, {
+        scrollTrigger: {
+          trigger: '#problema',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1
+        },
+        y: '20%',
+        ease: 'none'
+      });
+    }
+
+    // ---- 3. ELEGANT CARDS ENTRANCE & PARALLAX ----
+    const cardsContainer = document.getElementById('cardsContainer');
+    
+    if (cardsContainer) {
+      const cardsTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: cardsContainer,
+          start: 'top 80%',
+          toggleActions: 'play none none reverse'
+        }
+      });
+
+      // 3D Entrance
+      cardsTl
+        .fromTo('.anim-card-1', 
+          { x: -100, opacity: 0, rotateY: 15 },
+          { x: 0, opacity: 1, rotateY: 0, duration: 1, ease: 'power3.out' }
+        )
+        .fromTo('.anim-card-2', 
+          { x: 100, opacity: 0, rotateY: -15 },
+          { x: 0, opacity: 1, rotateY: 0, duration: 1, ease: 'power3.out' },
+          '-=0.8'
+        )
+        .fromTo('.anim-divider',
+          { scale: 0, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.5)' },
+          '-=0.5'
+        )
+        .fromTo('#cardGlowBg',
+          { scale: 0.5, opacity: 0 },
+          { scale: 1, opacity: 0.4, duration: 2, ease: 'power2.out' },
+          '-=1'
+        )
+        .fromTo('.anim-item-1',
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power2.out' },
+          '-=1.2'
+        )
+        .fromTo('.anim-item-2',
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power2.out' },
+          '-=1'
+        );
+
+      // Continuous floating orb
+      gsap.to('.anim-orb', {
+        y: 20,
+        x: -10,
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut'
+      });
+
+      // Scroll Parallax (cards float at different speeds)
+      gsap.to('.anim-card-1', {
+        scrollTrigger: {
+          trigger: cardsContainer,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1
+        },
+        y: -30,
+        ease: 'none'
+      });
+      gsap.to('.anim-card-2', {
+        scrollTrigger: {
+          trigger: cardsContainer,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.5
+        },
+        y: -70,
+        ease: 'none'
+      });
+    }
+
+    // ---- 4. PROGRESSIVE TEXT HIGHLIGHTING ----
+    ['impact1', 'impact2', 'impact3'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 80%',
+        onEnter: () => el.classList.add('is-active'),
+        onLeaveBack: () => el.classList.remove('is-active')
+      });
+    });
+
+    // ---- 6. SCROLL PROGRESS INDICATOR ----
+    const progressFill = document.getElementById('sectionProgressFill');
+    const problemaSection = document.getElementById('problema');
+    if (progressFill && problemaSection) {
+      gsap.to(progressFill, {
+        scrollTrigger: {
+          trigger: problemaSection,
+          start: 'top center',
+          end: 'bottom center',
+          scrub: 0.3
+        },
+        scaleY: 1,
+        ease: 'none'
+      });
+    }
+
+    // ========================================
+    // SECTION 3: AUTHORITY — GSAP
+    // ========================================
+
+    const autoridadeSection = document.getElementById('autoridade');
+    if (autoridadeSection) {
+      const s3Tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: autoridadeSection,
+          start: 'top 65%',
+          toggleActions: 'play none none reverse'
+        }
+      });
+
+      // 1. Photo Curtain Reveal
+      s3Tl.to('.s3-image-mask', {
+        clipPath: 'inset(0% 0 0 0)',
+        duration: 1.2,
+        ease: 'power3.inOut'
+      }, 0);
+
+      // 2. Credibility Boxes Fade In
+      s3Tl.fromTo('.s3-cred-box',
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, stagger: 0.2, ease: 'power2.out' },
+        0.6
+      );
+
+      // 3. Number Counter Animation
+      const counters = { years: 0, students: 0 };
+      s3Tl.to(counters, {
+        years: 20,
+        students: 4000,
+        duration: 2.5,
+        ease: 'power3.out',
+        onUpdate: () => {
+          document.getElementById('s3-counter-1').innerText = Math.floor(counters.years);
+          document.getElementById('s3-counter-2').innerText = Math.floor(counters.students).toLocaleString('pt-BR');
+        }
+      }, 0.8);
+    }
+
+    // ========================================
+    // SECTION 4: O MÉTODO — GSAP
+    // ========================================
+
+    const s4MetodoSection = document.getElementById('metodo');
+    if (s4MetodoSection) {
+      
+      // Background Parallax
+      gsap.to('.s4-bg-parallax', {
+        scrollTrigger: {
+          trigger: s4MetodoSection,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: true
+        },
+        y: '15%',
+        ease: 'none'
+      });
+
+      // Progress Line Scrub
+      const s4ListContainer = document.getElementById('s4-list-container');
+      const s4ProgressLine = document.getElementById('s4-progress-line');
+      
+      if(s4ListContainer && s4ProgressLine) {
+        gsap.to(s4ProgressLine, {
+          scrollTrigger: {
+            trigger: s4ListContainer,
+            start: 'top 55%',
+            end: 'bottom 65%',
+            scrub: 0.3
+          },
+          scaleY: 1,
+          ease: 'none'
+        });
+      }
+
+      // Sequential Item Animation (Text & Numbers)
+      const s4Items = gsap.utils.toArray('.s4-item');
+      s4Items.forEach((item) => {
+        const textBlock = item.querySelector('.s4-text-block');
+        
+        // Initial state for text block
+        gsap.set(textBlock, { opacity: 0, x: -30 });
+
+        // Add active class on scroll (triggers CSS transitions for number and icon)
+        ScrollTrigger.create({
+          trigger: item,
+          start: 'top 75%',
+          onEnter: () => item.classList.add('is-active'),
+          onLeaveBack: () => item.classList.remove('is-active')
+        });
+
+        // Fade in text block from left
+        gsap.to(textBlock, {
+          scrollTrigger: {
+            trigger: item,
+            start: 'top 75%',
+            toggleActions: 'play none none reverse'
+          },
+          opacity: 1,
+          x: 0,
+          duration: 0.8,
+          ease: 'power3.out'
+        });
+      });
+
+      // Reassurance block fade + translateY
+      gsap.fromTo('.s4-reassurance', 
+        { opacity: 0, y: 30 },
+        { 
+          scrollTrigger: {
+            trigger: '.s4-reassurance',
+            start: 'top 85%',
+            toggleActions: 'play none none reverse'
+          },
+          opacity: 1, 
+          y: 0, 
+          duration: 1, 
+          ease: 'power2.out' 
+        }
+      );
+    }
+
+    // ---- 7. FIX: REFRESH SCROLLTRIGGER ON LOAD ----
+    // This prevents async image loading from misaligning the scroll triggers
+    window.addEventListener('load', () => {
+      ScrollTrigger.refresh();
+    });
+
+    const heroImg = document.querySelector('#heroTilt img');
+    if (heroImg) {
+      if (heroImg.complete) {
+        ScrollTrigger.refresh();
+      } else {
+        heroImg.addEventListener('load', () => ScrollTrigger.refresh());
+      }
+    }
+
+    // Re-initialize Lucide icons for newly added section
+    lucide.createIcons();
   </script>
+
+
+  <!-- === JS DA SEÇÃO 5 === -->
+  <script src="assets/js/main.js"></script>
+
+
 </body>
 </html>
