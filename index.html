@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aprenda Penteados Cacheados - LaCoque Expert</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+  <style>
+    :root {
+      --wine: #6d1620;
+      --terracotta: #af3a20;
+      --orange: #e58548;
+      --blush: #fce7e0;
+      --ink: #3a1015;
+      --paper: #fffaf7;
+    }
+    
+    body {
+      font-family: 'Raleway', sans-serif;
+      background-color: var(--paper);
+      color: var(--ink);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Scrollbar (opcional) */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--blush); }
+    ::-webkit-scrollbar-thumb { background: var(--wine); border-radius: 4px; }
+    
+    /* Classes CSS do Design System */
+    .glass-panel {
+      background: rgba(255, 250, 247, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(109, 22, 32, 0.1);
+    }
+    
+    .btn-primary {
+      background-color: var(--wine);
+      color: var(--blush);
+      padding: 0.875rem 1.75rem;
+      border-radius: 9999px;
+      font-weight: 800;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      border: 1px solid transparent;
+      box-shadow: 0 4px 15px rgba(109, 22, 32, 0.2);
+    }
+    .btn-primary:hover {
+      background-color: var(--ink);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(109, 22, 32, 0.4);
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      color: var(--terracotta);
+      border: 1px solid var(--terracotta);
+      padding: 0.875rem 1.75rem;
+      border-radius: 9999px;
+      font-weight: 800;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.4s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+    }
+    .btn-outline:hover {
+      background-color: var(--terracotta);
+      color: var(--paper);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(175, 58, 32, 0.3);
+    }
+
+    .reveal { opacity: 0; transform: translateY(40px); }
+    
+    .particles-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(175, 58, 32, 0.15);
+      animation: float 25s infinite linear;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0); opacity: 0; }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { transform: translateY(-20vh) scale(1.5); opacity: 0; }
+    }
+    
+    .glow-effect { position: relative; }
+    .glow-effect::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(45deg, var(--wine), var(--terracotta), var(--orange), var(--wine));
+      z-index: -1;
+      border-radius: inherit;
+      background-size: 300%;
+      animation: glowing 10s linear infinite;
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+    }
+    .glow-effect:hover::before { opacity: 0.7; }
+    @keyframes glowing {
+      0% { background-position: 0 0; }
+      50% { background-position: 300% 0; }
+      100% { background-position: 0 0; }
+    }
+    
+    .scroll-indicator {
+      animation: bounce 2s infinite;
+    }
+    @keyframes bounce {
+      0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+      40% { transform: translateY(-10px); }
+      60% { transform: translateY(-5px); }
+    }
+  </style>
+
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            wine: '#6d1620',
+            terracotta: '#af3a20',
+            orange: '#e58548',
+            blush: '#fce7e0',
+            ink: '#3a1015',
+            paper: '#fffaf7',
+          },
+          fontFamily: {
+            sans: ['Raleway', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="antialiased selection:bg-wine selection:text-paper min-h-screen flex flex-col relative">
+  <!-- Fundo com Partículas -->
+  <div class="particles-bg" id="particles"></div>
+
+  <!-- Navegação Fixa -->
+  <nav class="fixed w-full z-50 glass-panel py-4 px-6 md:px-12 flex justify-between items-center transition-all duration-300" id="navbar">
+    <div class="text-xl md:text-2xl font-extrabold text-wine tracking-tighter">
+      LACOQUE <span class="text-terracotta font-light">EXPERT</span>
+    </div>
+    
+    <div class="hidden md:flex gap-8 lg:gap-12 text-[12px] font-bold text-ink uppercase tracking-[0.14em]">
+      <a href="#" class="hover:text-terracotta transition-colors relative group">
+        Início
+        <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-terracotta transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a href="#" class="hover:text-terracotta transition-colors relative group">
+        Método
+        <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-terracotta transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a href="#" class="hover:text-terracotta transition-colors relative group">
+        Conteúdo
+        <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-terracotta transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a href="#" class="hover:text-terracotta transition-colors relative group">
+        Depoimentos
+        <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-terracotta transition-all duration-300 group-hover:w-full"></span>
+      </a>
+    </div>
+    
+    <a href="#" class="hidden md:inline-flex btn-primary !py-2.5 !px-6 !text-[11px] shadow-md">Portal de Alunos</a>
+    
+    <!-- Menu Mobile -->
+    <button class="md:hidden text-wine focus:outline-none">
+      <i data-lucide="menu" class="w-6 h-6"></i>
+    </button>
+  </nav>
+
+  <!-- Seção Hero -->
+  <main class="flex-grow flex items-center relative z-10 pt-28 pb-20 lg:pt-0 lg:pb-0 min-h-screen">
+    <div class="max-w-7xl mx-auto w-full px-6 md:px-12 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-16 items-center">
+      
+      <!-- Coluna de Texto (Esquerda no Desktop, Cima no Mobile) -->
+      <div class="lg:col-span-6 xl:col-span-7 flex flex-col justify-center order-2 lg:order-1 pt-4 lg:pt-0">
+        
+        <!-- Kicker -->
+        <div class="stagger-element flex items-center gap-3 mb-6">
+          <div class="w-8 h-[2px] bg-terracotta"></div>
+          <span class="text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] text-terracotta leading-snug">
+            Método Carla LaCoque <span class="hidden sm:inline">·</span><br class="sm:hidden" /> Mais de 20 anos formando cabeleireiras em cachos
+          </span>
+        </div>
+
+        <!-- Headline -->
+        <h1 class="stagger-element text-[34px] sm:text-5xl lg:text-5xl xl:text-[60px] font-extrabold tracking-tighter mb-6 leading-[1.05] text-wine uppercase">
+          Existe um serviço, dentro do seu próprio salão, que você já sabe fazer <span class="text-terracotta bg-blush/30 px-2 rounded-lg">pela metade do preço</span> que podia cobrar.
+        </h1>
+        
+        <!-- Subheadline -->
+        <p class="stagger-element text-[15px] sm:text-[17px] text-ink/80 max-w-2xl mb-10 font-medium leading-[1.6]">
+          Em 1 hora você aprende as 3 técnicas de penteado em cacheado e crespo que transformam um atendimento de R$80 em um atendimento de R$200 — sem comprar equipamento novo, sem fazer outro curso de R$500, sem depender de sorte.
+        </p>
+        
+        <!-- CTAs e Microcopy -->
+        <div class="stagger-element flex flex-col gap-4">
+          <div class="flex flex-col sm:flex-row gap-4 items-start sm:items-center">
+            <a href="#" class="btn-primary w-full sm:w-auto shadow-xl shadow-wine/20 text-center justify-center group">
+              Quero aprender agora por R$27,90
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+            
+            <a href="#" class="btn-outline w-full sm:w-auto text-center justify-center">
+              Ver o que você vai aprender
+            </a>
+          </div>
+          
+          <!-- Microcopy -->
+          <div class="flex items-center justify-center sm:justify-start gap-1.5 text-[11px] text-ink/60 font-bold tracking-widest uppercase mt-2">
+            <i data-lucide="smartphone" class="w-3.5 h-3.5 text-terracotta"></i>
+            Acesso imediato · Aplicação em 1 hora · Direto no celular
+          </div>
+        </div>
+      </div>
+
+      <!-- Coluna de Imagem/Produto (Direita no Desktop, Baixo no Mobile) -->
+      <div class="stagger-element lg:col-span-6 xl:col-span-5 order-1 lg:order-2 relative flex justify-center lg:justify-end w-full">
+        <!-- Elementos de Decoração de Fundo -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[110%] h-[110%] bg-gradient-to-tr from-blush via-paper to-transparent rounded-full -z-10 blur-3xl opacity-80 pointer-events-none"></div>
+        <div class="absolute -top-6 -right-6 w-32 h-32 border border-terracotta/20 rounded-full animate-[spin_10s_linear_infinite] pointer-events-none"></div>
+        <div class="absolute -bottom-8 -left-8 w-40 h-40 border border-orange/20 rounded-full animate-[spin_15s_linear_infinite_reverse] pointer-events-none"></div>
+        
+        <!-- Container com Efeito Tilt 3D -->
+        <div class="tilt-element relative w-full max-w-sm sm:max-w-md lg:max-w-full aspect-[4/5] rounded-[32px] overflow-hidden shadow-2xl shadow-wine/15 glow-effect bg-ink/5" 
+             data-tilt 
+             data-tilt-max="4" 
+             data-tilt-speed="400" 
+             data-tilt-perspective="1000"
+             data-tilt-glare="true" 
+             data-tilt-max-glare="0.2">
+             
+          <div class="absolute inset-0 bg-gradient-to-b from-transparent to-ink/40 z-10 pointer-events-none rounded-[32px]"></div>
+          
+          <!-- SUBSTITUIR: foto placeholder, trocar por still real da Carla -->
+          <img src="https://images.unsplash.com/photo-1596755389378-c31d21fd1273?q=80&w=1974&auto=format&fit=crop" 
+               alt="Penteado em cabelo cacheado placeholder" 
+               class="w-full h-full object-cover rounded-[32px] scale-[1.02] transform transition-transform duration-700 hover:scale-105" />
+          
+          <!-- Badge flutuante na Imagem -->
+          <div class="absolute bottom-6 left-6 z-20 glass-panel !bg-paper/95 px-5 py-3.5 rounded-2xl shadow-xl border-white/50 flex items-center gap-4 transform translate-y-2 opacity-100">
+            <div class="w-12 h-12 rounded-full bg-orange/15 flex items-center justify-center relative overflow-hidden">
+              <div class="absolute inset-0 bg-orange/20 animate-ping opacity-50"></div>
+              <i data-lucide="trending-up" class="w-5 h-5 text-terracotta relative z-10"></i>
+            </div>
+            <div>
+              <p class="text-[10px] font-bold text-terracotta uppercase tracking-[0.2em] mb-0.5">Alto Lucro</p>
+              <p class="text-base font-extrabold text-wine leading-none tracking-tight">Atendimento 2.5x Maior</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+    </div>
+  </main>
+
+  <!-- Indicador de Scroll -->
+  <div class="absolute bottom-6 left-1/2 -translate-x-1/2 z-20 flex flex-col items-center gap-2 scroll-indicator">
+    <span class="text-[9px] uppercase tracking-[0.2em] text-terracotta font-bold">Descubra</span>
+    <div class="w-[2px] h-8 bg-gradient-to-b from-terracotta to-transparent rounded-full"></div>
+  </div>
+
+  <script>
+    // Inicializar Ícones (Lucide)
+    lucide.createIcons();
+
+    // GSAP Animações de Entrada
+    document.addEventListener("DOMContentLoaded", () => {
+      // 1. Geração das partículas dinâmicas no background
+      const particlesContainer = document.getElementById('particles');
+      const particleCount = 20;
+      
+      for (let i = 0; i < particleCount; i++) {
+        const particle = document.createElement('div');
+        particle.classList.add('particle');
+        
+        // Propriedades randômicas para posição, tamanho e velocidade
+        const size = Math.random() * 8 + 4; // Entre 4px e 12px
+        const left = Math.random() * 100; // Entre 0% e 100% horizontal
+        const delay = Math.random() * 25; // Delay inicial aleatório
+        const duration = Math.random() * 15 + 15; // Duração entre 15s e 30s
+        
+        particle.style.width = `${size}px`;
+        particle.style.height = `${size}px`;
+        particle.style.left = `${left}%`;
+        particle.style.animationDelay = `-${delay}s`;
+        particle.style.animationDuration = `${duration}s`;
+        
+        particlesContainer.appendChild(particle);
+      }
+
+      // 2. Timeline GSAP para o Stagger de elementos do Hero
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      
+      // Navbar entra de cima
+      tl.from("#navbar", { y: -20, opacity: 0, duration: 0.6 }, "+=0.2");
+
+      // Textos, botões e imagem entram em sequência de baixo para cima
+      tl.fromTo(".stagger-element", 
+        { y: 30, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.8, stagger: 0.12 },
+        "-=0.3"
+      );
+
+      // 3. Efeito blur/sombra no Navbar ao rolar a página
+      const navbar = document.getElementById('navbar');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 10) {
+          navbar.classList.add('shadow-lg');
+          navbar.style.background = 'rgba(255, 250, 247, 0.85)';
+          navbar.style.paddingTop = '1rem';
+          navbar.style.paddingBottom = '1rem';
+        } else {
+          navbar.classList.remove('shadow-lg');
+          navbar.style.background = 'rgba(255, 250, 247, 0.75)';
+          navbar.style.paddingTop = '1rem';
+          navbar.style.paddingBottom = '1rem';
+        }
+      });
+    });
+  </script>
+</body>
+</html>

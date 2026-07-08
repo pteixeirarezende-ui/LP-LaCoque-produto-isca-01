@@ -1,0 +1,610 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Aprenda Penteados Cacheados e Cobre R$200 — LaCoque Expert</title>
+  <meta name="description" content="Curso prático de penteados em cabelo cacheado e crespo. Aprenda 3 técnicas que transformam um atendimento de R$80 em R$200. Método Carla LaCoque com mais de 20 anos de experiência.">
+
+  <!-- Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;800;900&display=swap" rel="stylesheet">
+
+  <!-- CDN Libraries -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+  <!-- Tailwind Config -->
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            wine: '#6d1620',
+            terracotta: '#af3a20',
+            orange: '#e58548',
+            blush: '#fce7e0',
+            ink: '#3a1015',
+            paper: '#fffaf7',
+          },
+          fontFamily: {
+            sans: ['Raleway', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+
+  <style>
+    /* ===== DESIGN SYSTEM TOKENS ===== */
+    :root {
+      --wine: #6d1620;
+      --terracotta: #af3a20;
+      --orange: #e58548;
+      --blush: #fce7e0;
+      --ink: #3a1015;
+      --paper: #fffaf7;
+    }
+
+    body {
+      font-family: 'Raleway', sans-serif;
+      background-color: var(--paper);
+      color: var(--ink);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--blush); }
+    ::-webkit-scrollbar-thumb { background: var(--wine); border-radius: 4px; }
+
+    /* ===== DESIGN SYSTEM CLASSES ===== */
+
+    .glass-panel {
+      background: rgba(255, 250, 247, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(109, 22, 32, 0.1);
+    }
+
+    .glass-panel-dark {
+      background: rgba(58, 16, 21, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(252, 231, 224, 0.1);
+      color: var(--paper);
+    }
+
+    .btn-primary {
+      background-color: var(--wine);
+      color: var(--blush);
+      padding: 0.875rem 1.75rem;
+      border-radius: 9999px;
+      font-weight: 800;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      border: 1px solid transparent;
+      box-shadow: 0 4px 15px rgba(109, 22, 32, 0.2);
+      cursor: pointer;
+      text-decoration: none;
+      justify-content: center;
+    }
+    .btn-primary:hover {
+      background-color: var(--ink);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(109, 22, 32, 0.4);
+    }
+
+    .btn-outline {
+      background-color: transparent;
+      color: var(--terracotta);
+      border: 1px solid var(--terracotta);
+      padding: 0.875rem 1.75rem;
+      border-radius: 9999px;
+      font-weight: 800;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.4s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+      text-decoration: none;
+      justify-content: center;
+    }
+    .btn-outline:hover {
+      background-color: var(--terracotta);
+      color: var(--paper);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(175, 58, 32, 0.3);
+    }
+
+    /* Reveal animations */
+    .reveal { opacity: 0; transform: translateY(40px); }
+    .reveal-left { opacity: 0; transform: translateX(-40px); }
+    .reveal-right { opacity: 0; transform: translateX(40px); }
+
+    .bg-gradient-premium {
+      background: linear-gradient(135deg, var(--wine) 0%, var(--ink) 100%);
+    }
+
+    /* Particles */
+    .particles-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(175, 58, 32, 0.15);
+      animation: float 25s infinite linear;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0); opacity: 0; }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { transform: translateY(-20vh) scale(1.5); opacity: 0; }
+    }
+
+    .glow-effect { position: relative; }
+    .glow-effect::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(45deg, var(--wine), var(--terracotta), var(--orange), var(--wine));
+      z-index: -1;
+      border-radius: inherit;
+      background-size: 300%;
+      animation: glowing 10s linear infinite;
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+    }
+    .glow-effect:hover::before { opacity: 0.7; }
+    @keyframes glowing {
+      0% { background-position: 0 0; }
+      50% { background-position: 300% 0; }
+      100% { background-position: 0 0; }
+    }
+
+    .section-label {
+      font-size: 12.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: block;
+    }
+
+    /* ===== HERO-SPECIFIC STYLES ===== */
+
+    /* Navbar glass transition */
+    .navbar-scrolled {
+      background: rgba(255, 250, 247, 0.92) !important;
+      backdrop-filter: blur(20px) !important;
+      -webkit-backdrop-filter: blur(20px) !important;
+      box-shadow: 0 4px 30px rgba(109, 22, 32, 0.08);
+      padding-top: 0.75rem !important;
+      padding-bottom: 0.75rem !important;
+    }
+
+    /* Hero image frame */
+    .hero-image-wrapper {
+      position: relative;
+      border-radius: 24px;
+      overflow: hidden;
+    }
+    .hero-image-wrapper::before {
+      content: '';
+      position: absolute;
+      inset: 0;
+      border-radius: 24px;
+      padding: 2px;
+      background: linear-gradient(135deg, var(--orange), var(--terracotta), var(--wine));
+      -webkit-mask: linear-gradient(#fff 0 0) content-box, linear-gradient(#fff 0 0);
+      -webkit-mask-composite: xor;
+      mask-composite: exclude;
+      z-index: 2;
+      pointer-events: none;
+    }
+    .hero-image-wrapper::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, transparent 40%, rgba(58,16,21,0.3) 100%);
+      border-radius: 24px;
+      z-index: 1;
+      pointer-events: none;
+    }
+
+    /* Decorative accent line */
+    .accent-line {
+      width: 56px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--terracotta), var(--orange));
+      border-radius: 4px;
+    }
+
+    /* Scroll indicator animation */
+    @keyframes scrollBounce {
+      0%, 100% { transform: translateY(0); opacity: 0.6; }
+      50% { transform: translateY(8px); opacity: 1; }
+    }
+    .scroll-indicator {
+      animation: scrollBounce 2.4s ease-in-out infinite;
+    }
+
+    /* Microcopy styling */
+    .microcopy-dot {
+      width: 4px;
+      height: 4px;
+      border-radius: 50%;
+      background: var(--orange);
+      display: inline-block;
+      flex-shrink: 0;
+    }
+
+    /* Kicker badge pulse ring */
+    @keyframes pulseRing {
+      0% { transform: scale(1); opacity: 0.6; }
+      100% { transform: scale(2.2); opacity: 0; }
+    }
+    .pulse-ring {
+      position: absolute;
+      inset: 0;
+      border-radius: 50%;
+      border: 1.5px solid var(--orange);
+      animation: pulseRing 2s ease-out infinite;
+    }
+
+    /* Hero background decorative elements */
+    .hero-bg-circle {
+      position: absolute;
+      border-radius: 50%;
+      background: radial-gradient(circle, rgba(229,133,72,0.08) 0%, transparent 70%);
+      pointer-events: none;
+    }
+
+    /* Mobile hamburger */
+    .hamburger-line {
+      display: block;
+      width: 20px;
+      height: 2px;
+      background-color: var(--wine);
+      border-radius: 2px;
+      transition: all 0.3s ease;
+    }
+
+    /* Tilt image container */
+    .tilt-container {
+      transform-style: preserve-3d;
+    }
+
+    /* CTA glow pulse */
+    @keyframes ctaGlow {
+      0%, 100% { box-shadow: 0 4px 15px rgba(109, 22, 32, 0.2), 0 0 0 0 rgba(109, 22, 32, 0.3); }
+      50% { box-shadow: 0 4px 15px rgba(109, 22, 32, 0.2), 0 0 0 8px rgba(109, 22, 32, 0); }
+    }
+    .cta-pulse {
+      animation: ctaGlow 3s ease-in-out infinite;
+    }
+    .cta-pulse:hover {
+      animation: none;
+    }
+  </style>
+</head>
+<body class="antialiased selection:bg-wine selection:text-paper">
+
+  <!-- ===== NAVIGATION ===== -->
+  <nav class="fixed w-full z-50 glass-panel py-5 px-6 md:px-8 transition-all duration-500" id="navbar">
+    <div class="max-w-7xl mx-auto flex justify-between items-center">
+      <!-- Logo -->
+      <a href="#" class="text-xl md:text-2xl font-extrabold text-wine tracking-tighter flex items-center gap-1">
+        LACOQUE <span class="text-terracotta font-light">EXPERT</span>
+      </a>
+
+      <!-- Desktop Menu -->
+      <div class="hidden lg:flex gap-10 text-[13px] font-bold text-ink uppercase tracking-[0.14em]">
+        <a href="#hero" class="hover:text-terracotta transition-colors relative group text-terracotta">
+          Início
+          <span class="absolute -bottom-2 left-0 w-full h-[2px] bg-terracotta transition-all duration-300"></span>
+        </a>
+        <a href="#metodo" class="hover:text-terracotta transition-colors relative group">
+          Método
+          <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-terracotta transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#depoimentos" class="hover:text-terracotta transition-colors relative group">
+          Depoimentos
+          <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-terracotta transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#garantia" class="hover:text-terracotta transition-colors relative group">
+          Garantia
+          <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-terracotta transition-all duration-300 group-hover:w-full"></span>
+        </a>
+        <a href="#faq" class="hover:text-terracotta transition-colors relative group">
+          Dúvidas
+          <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-terracotta transition-all duration-300 group-hover:w-full"></span>
+        </a>
+      </div>
+
+      <!-- CTA Nav (desktop) -->
+      <a href="#cta" class="hidden lg:inline-flex btn-primary text-xs py-3 px-5">
+        Quero Aprender
+        <i data-lucide="arrow-right" class="w-4 h-4"></i>
+      </a>
+
+      <!-- Mobile Hamburger -->
+      <button id="mobileMenuBtn" class="lg:hidden flex flex-col gap-[5px] p-2 rounded-xl hover:bg-blush transition-colors" aria-label="Abrir menu">
+        <span class="hamburger-line"></span>
+        <span class="hamburger-line w-[14px]"></span>
+        <span class="hamburger-line"></span>
+      </button>
+    </div>
+
+    <!-- Mobile Menu Dropdown -->
+    <div id="mobileMenu" class="hidden lg:hidden mt-4 pb-4 border-t border-wine/10 pt-4">
+      <div class="flex flex-col gap-4 text-[13px] font-bold text-ink uppercase tracking-[0.14em]">
+        <a href="#hero" class="hover:text-terracotta transition-colors py-2">Início</a>
+        <a href="#metodo" class="hover:text-terracotta transition-colors py-2">Método</a>
+        <a href="#depoimentos" class="hover:text-terracotta transition-colors py-2">Depoimentos</a>
+        <a href="#garantia" class="hover:text-terracotta transition-colors py-2">Garantia</a>
+        <a href="#faq" class="hover:text-terracotta transition-colors py-2">Dúvidas</a>
+        <a href="#cta" class="btn-primary text-xs py-3 px-5 mt-2 w-full text-center">
+          Quero Aprender
+          <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+    </div>
+  </nav>
+
+
+  <!-- ===== HERO SECTION ===== -->
+  <section id="hero" class="relative min-h-screen flex items-center overflow-hidden bg-paper">
+
+    <!-- Particles Background -->
+    <div class="particles-bg" id="particles"></div>
+
+    <!-- Decorative Background Elements -->
+    <div class="hero-bg-circle w-[600px] h-[600px] -top-[200px] -right-[100px] z-0"></div>
+    <div class="hero-bg-circle w-[400px] h-[400px] bottom-[10%] -left-[100px] z-0"></div>
+    <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blush/40 via-transparent to-transparent z-0 hidden lg:block"></div>
+
+    <!-- Main Content Grid -->
+    <div class="relative z-10 max-w-7xl mx-auto w-full px-6 md:px-8 pt-28 pb-20 lg:pt-32 lg:pb-24">
+      <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 lg:gap-16 items-center">
+
+        <!-- LEFT COLUMN: Text Content -->
+        <div class="lg:col-span-6 xl:col-span-7 order-1 lg:order-1">
+
+          <!-- Kicker Badge -->
+          <div id="anim-kicker" class="reveal inline-flex items-center gap-3 px-5 py-2.5 rounded-full border border-orange/30 bg-blush/60 backdrop-blur-sm mb-7 shadow-sm">
+            <span class="relative flex items-center justify-center w-2.5 h-2.5 flex-shrink-0">
+              <span class="w-2 h-2 rounded-full bg-orange shadow-[0_0_8px_#e58548]"></span>
+              <span class="pulse-ring"></span>
+            </span>
+            <span class="text-[11px] md:text-xs font-bold uppercase tracking-[0.13em] text-terracotta leading-tight">
+              Método Carla LaCoque · 20+ anos em cachos
+            </span>
+          </div>
+
+          <!-- Headline -->
+          <h1 id="anim-headline" class="reveal text-[28px] sm:text-[34px] md:text-[40px] lg:text-[44px] xl:text-[48px] font-extrabold text-ink leading-[1.08] tracking-[-0.01em] mb-6">
+            Existe um serviço, dentro do seu próprio salão, que você já sabe fazer <span class="text-transparent bg-clip-text bg-gradient-to-r from-terracotta to-wine">pela metade do preço</span> que podia cobrar.
+          </h1>
+
+          <!-- Accent line -->
+          <div id="anim-line" class="reveal accent-line mb-6"></div>
+
+          <!-- Subheadline -->
+          <p id="anim-sub" class="reveal text-[15.5px] md:text-[17px] text-ink/75 leading-[1.6] mb-9 max-w-xl font-normal">
+            Em 1 hora você aprende as 3 técnicas de penteado em cacheado e crespo que transformam um atendimento de R$80 em um atendimento de R$200 — sem comprar equipamento novo, sem fazer outro curso de R$500, sem depender de sorte.
+          </p>
+
+          <!-- CTAs -->
+          <div id="anim-cta" class="reveal flex flex-col sm:flex-row gap-4 mb-5">
+            <a href="#cta" class="btn-primary cta-pulse py-4 px-7 text-sm md:text-[0.875rem]">
+              Quero aprender agora por R$27,90
+              <i data-lucide="arrow-right" class="w-5 h-5"></i>
+            </a>
+            <a href="#metodo" class="btn-outline py-4 px-7 text-sm md:text-[0.875rem]">
+              Ver o que você vai aprender
+              <i data-lucide="chevron-down" class="w-4 h-4"></i>
+            </a>
+          </div>
+
+          <!-- Microcopy -->
+          <div id="anim-micro" class="reveal flex flex-wrap items-center gap-3 text-[12px] md:text-[12.5px] text-ink/50 font-medium">
+            <span class="flex items-center gap-2">
+              <i data-lucide="zap" class="w-3.5 h-3.5 text-orange"></i>
+              Acesso imediato
+            </span>
+            <span class="microcopy-dot"></span>
+            <span class="flex items-center gap-2">
+              <i data-lucide="clock" class="w-3.5 h-3.5 text-orange"></i>
+              Aplicação em 1 hora
+            </span>
+            <span class="microcopy-dot"></span>
+            <span class="flex items-center gap-2">
+              <i data-lucide="smartphone" class="w-3.5 h-3.5 text-orange"></i>
+              Direto no seu celular
+            </span>
+          </div>
+
+        </div>
+
+        <!-- RIGHT COLUMN: Image -->
+        <div class="lg:col-span-6 xl:col-span-5 order-2 lg:order-2 flex justify-center lg:justify-end">
+          <div id="anim-image" class="reveal-right w-full max-w-md lg:max-w-none">
+            <div class="hero-image-wrapper tilt-container" id="heroTilt">
+              <!-- SUBSTITUIR: foto placeholder, trocar por still real da Carla -->
+              <img 
+                src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1200&auto=format&fit=crop" 
+                alt="Penteado em cabelo cacheado sendo finalizado por profissional" 
+                class="w-full h-[360px] sm:h-[420px] md:h-[480px] lg:h-[540px] xl:h-[580px] object-cover rounded-[24px]"
+                loading="eager"
+                fetchpriority="high"
+              >
+              <!-- Overlay elements inside the image -->
+              <div class="absolute bottom-0 left-0 right-0 p-5 md:p-6 z-10">
+                <div class="glass-panel-dark rounded-2xl px-5 py-4 flex items-center gap-4">
+                  <div class="w-10 h-10 md:w-12 md:h-12 rounded-full bg-orange/20 flex items-center justify-center flex-shrink-0">
+                    <i data-lucide="trending-up" class="w-5 h-5 md:w-6 md:h-6 text-orange"></i>
+                  </div>
+                  <div>
+                    <span class="text-[10px] md:text-[11px] font-bold uppercase tracking-[0.14em] text-orange block">Faturamento médio</span>
+                    <span class="text-paper font-extrabold text-lg md:text-xl tracking-tight">De R$80 → R$200</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <!-- Small floating badge -->
+            <div class="hidden md:flex absolute -top-3 -left-3 lg:-top-4 lg:-left-6 z-20 items-center gap-2 px-4 py-2.5 rounded-2xl bg-wine shadow-xl shadow-wine/20" style="transform: rotate(-3deg);">
+              <i data-lucide="users" class="w-4 h-4 text-orange"></i>
+              <span class="text-[10px] font-bold uppercase tracking-[0.12em] text-blush whitespace-nowrap">+4.000 Alunas</span>
+            </div>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+    <!-- Scroll Indicator -->
+    <div class="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10 scroll-indicator">
+      <span class="text-[10px] uppercase tracking-[0.18em] text-ink/40 font-bold">Saiba mais</span>
+      <div class="w-[1px] h-10 bg-gradient-to-b from-terracotta/60 to-transparent"></div>
+    </div>
+
+  </section>
+
+
+  <!-- ===== SCRIPTS ===== -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // GSAP Registration
+    gsap.registerPlugin(ScrollTrigger);
+
+    // ---- NAVBAR: Glass blur on scroll ----
+    const navbar = document.getElementById('navbar');
+    window.addEventListener('scroll', () => {
+      if (window.scrollY > 40) {
+        navbar.classList.add('navbar-scrolled');
+      } else {
+        navbar.classList.remove('navbar-scrolled');
+      }
+    });
+
+    // ---- MOBILE MENU TOGGLE ----
+    const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+    const mobileMenu = document.getElementById('mobileMenu');
+    mobileMenuBtn.addEventListener('click', () => {
+      mobileMenu.classList.toggle('hidden');
+    });
+
+    // ---- HERO ENTRANCE: GSAP Stagger Timeline ----
+    const heroTl = gsap.timeline({
+      defaults: {
+        ease: 'power4.out',
+        duration: 1
+      },
+      delay: 0.3
+    });
+
+    heroTl
+      .fromTo('#anim-kicker', 
+        { y: 30, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 0.8 }
+      )
+      .fromTo('#anim-headline', 
+        { y: 40, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 1 }, 
+        '-=0.5'
+      )
+      .fromTo('#anim-line', 
+        { scaleX: 0, opacity: 0, transformOrigin: 'left center' }, 
+        { scaleX: 1, opacity: 1, duration: 0.6 }, 
+        '-=0.5'
+      )
+      .fromTo('#anim-sub', 
+        { y: 30, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 0.9 }, 
+        '-=0.3'
+      )
+      .fromTo('#anim-cta', 
+        { y: 25, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 0.8 }, 
+        '-=0.4'
+      )
+      .fromTo('#anim-micro', 
+        { y: 15, opacity: 0 }, 
+        { y: 0, opacity: 1, duration: 0.6 }, 
+        '-=0.3'
+      )
+      .fromTo('#anim-image', 
+        { x: 60, opacity: 0 }, 
+        { x: 0, opacity: 1, duration: 1.2, ease: 'power3.out' }, 
+        0.5  // starts at 0.5s absolute for a staggered feel
+      );
+
+    // ---- VANILLA TILT on Hero Image ----
+    const tiltEl = document.getElementById('heroTilt');
+    if (tiltEl && window.innerWidth >= 1024) {
+      VanillaTilt.init(tiltEl, {
+        max: 6,
+        speed: 800,
+        scale: 1.02,
+        glare: true,
+        'max-glare': 0.12,
+        perspective: 1200,
+        gyroscope: false
+      });
+    }
+
+    // ---- PARTICLES CREATION ----
+    const particlesContainer = document.getElementById('particles');
+    const particleCount = window.innerWidth < 768 ? 15 : 30;
+    for (let i = 0; i < particleCount; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 20 + 6;
+      p.style.width = size + 'px';
+      p.style.height = size + 'px';
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.animationDelay = (Math.random() * 25) + 's';
+      p.style.animationDuration = (Math.random() * 15 + 18) + 's';
+      // Some particles use wine, some use orange for variety
+      if (i % 4 === 0) {
+        p.style.background = 'rgba(109, 22, 32, 0.08)';
+      } else if (i % 3 === 0) {
+        p.style.background = 'rgba(229, 133, 72, 0.1)';
+      }
+      particlesContainer.appendChild(p);
+    }
+
+    // ---- SCROLL INDICATOR: Fade out on scroll ----
+    const scrollIndicator = document.querySelector('.scroll-indicator');
+    if (scrollIndicator) {
+      window.addEventListener('scroll', () => {
+        const opacity = Math.max(0, 1 - window.scrollY / 200);
+        scrollIndicator.style.opacity = opacity;
+      });
+    }
+  </script>
+
+</body>
+</html>

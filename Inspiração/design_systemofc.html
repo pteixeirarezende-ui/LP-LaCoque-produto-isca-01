@@ -1,0 +1,822 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LaCoque Expert — Design System</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  
+  <!-- Referências de JS via CDN (Tailwind, Lucide, GSAP, Iconify) para evitar erro de CORS em navegadores locais -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://unpkg.com/lucide@latest"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://code.iconify.design/iconify-icon/2.1.0/iconify-icon.min.js"></script>
+
+  <style>
+    :root {
+      --wine: #6d1620;
+      --terracotta: #af3a20;
+      --orange: #e58548;
+      --blush: #fce7e0;
+      --ink: #3a1015;
+      --paper: #fffaf7;
+    }
+    
+    body {
+      font-family: 'Raleway', sans-serif;
+      background-color: var(--paper);
+      color: var(--ink);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+    
+    /* Scrollbar */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--blush); }
+    ::-webkit-scrollbar-thumb { background: var(--wine); border-radius: 4px; }
+
+    /* Classes CSS inspiradas nos arquivos apontados */
+    .glass-panel {
+      background: rgba(255, 250, 247, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(109, 22, 32, 0.1);
+    }
+    .glass-panel-dark {
+      background: rgba(58, 16, 21, 0.85);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border: 1px solid rgba(252, 231, 224, 0.1);
+      color: var(--paper);
+    }
+
+    .btn-primary {
+      background-color: var(--wine);
+      color: var(--blush);
+      padding: 0.875rem 1.75rem;
+      border-radius: 9999px;
+      font-weight: 800;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+      border: 1px solid transparent;
+      box-shadow: 0 4px 15px rgba(109, 22, 32, 0.2);
+    }
+    .btn-primary:hover {
+      background-color: var(--ink);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(109, 22, 32, 0.4);
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      color: var(--terracotta);
+      border: 1px solid var(--terracotta);
+      padding: 0.875rem 1.75rem;
+      border-radius: 9999px;
+      font-weight: 800;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.4s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+    .btn-outline:hover {
+      background-color: var(--terracotta);
+      color: var(--paper);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(175, 58, 32, 0.3);
+    }
+
+    /* Animações (reveal) usadas nos outros temas */
+    .reveal { opacity: 0; transform: translateY(40px); }
+    .reveal-left { opacity: 0; transform: translateX(-40px); }
+    .reveal-right { opacity: 0; transform: translateX(40px); }
+    
+    .bg-gradient-premium {
+      background: linear-gradient(135deg, var(--wine) 0%, var(--ink) 100%);
+    }
+
+    /* Partículas de Background (inspirado no Monolith/Desert Retreat) */
+    .particles-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      overflow: hidden;
+      z-index: 0;
+    }
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(175, 58, 32, 0.15);
+      animation: float 25s infinite linear;
+    }
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0); opacity: 0; }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { transform: translateY(-20vh) scale(1.5); opacity: 0; }
+    }
+    
+    .glow-effect { position: relative; }
+    .glow-effect::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(45deg, var(--wine), var(--terracotta), var(--orange), var(--wine));
+      z-index: -1;
+      border-radius: inherit;
+      background-size: 300%;
+      animation: glowing 10s linear infinite;
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+    }
+    .glow-effect:hover::before { opacity: 0.7; }
+    @keyframes glowing {
+      0% { background-position: 0 0; }
+      50% { background-position: 300% 0; }
+      100% { background-position: 0 0; }
+    }
+    
+    .section-label {
+      font-size: 12.5px;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      color: var(--terracotta);
+      font-weight: 700;
+      margin-bottom: 8px;
+      display: block;
+    }
+  </style>
+  
+  <script>
+    // Configurando o Tailwind
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            wine: '#6d1620',
+            terracotta: '#af3a20',
+            orange: '#e58548',
+            blush: '#fce7e0',
+            ink: '#3a1015',
+            paper: '#fffaf7',
+          },
+          fontFamily: {
+            sans: ['Raleway', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="antialiased selection:bg-wine selection:text-paper">
+
+  <!-- Nav -->
+  <nav class="fixed w-full z-50 glass-panel py-5 px-8 flex justify-between items-center transition-all duration-300" id="navbar">
+    <div class="text-2xl font-extrabold text-wine tracking-tighter">LACOQUE <span class="text-terracotta font-light">EXPERT</span></div>
+    <div class="hidden md:flex gap-10 text-[13px] font-bold text-ink uppercase tracking-[0.14em]">
+      <a href="#hero" class="hover:text-terracotta transition-colors relative group">
+        Início
+        <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-terracotta transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a href="#typography" class="hover:text-terracotta transition-colors relative group">
+        Tipografia
+        <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-terracotta transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a href="#colors" class="hover:text-terracotta transition-colors relative group">
+        Cores
+        <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-terracotta transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a href="#components" class="hover:text-terracotta transition-colors relative group">
+        Interface
+        <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-terracotta transition-all duration-300 group-hover:w-full"></span>
+      </a>
+    </div>
+    <a href="#" class="btn-primary">Acessar Portal</a>
+  </nav>
+
+  <!-- 1. HERO DEMONSTRATION -->
+  <section id="hero" class="relative min-h-screen flex items-center justify-center pt-20 overflow-hidden bg-gradient-premium text-blush">
+    <div class="particles-bg" id="particles"></div>
+    <div class="absolute inset-0 bg-ink mix-blend-multiply opacity-60"></div>
+    <div class="absolute inset-0 bg-gradient-to-t from-ink via-transparent to-transparent z-0"></div>
+    
+    <div class="relative z-10 max-w-6xl mx-auto px-6 text-center">
+      <div class="reveal inline-flex items-center gap-3 px-5 py-2 rounded-full border border-orange/40 bg-ink/50 backdrop-blur-md mb-8 shadow-lg shadow-orange/10">
+        <span class="w-2 h-2 rounded-full bg-orange animate-pulse shadow-[0_0_8px_#e58548]"></span>
+        <span class="text-xs font-bold uppercase tracking-[0.15em] text-orange">Brand System v1.0</span>
+      </div>
+      
+      <h1 class="reveal text-5xl sm:text-7xl lg:text-[90px] font-extrabold tracking-tighter mb-6 leading-[0.9] text-paper">
+        A ARTE DO <br/>
+        <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange via-terracotta to-wine">CONTROLE ABSOLUTO</span>
+      </h1>
+      
+      <p class="reveal text-lg md:text-xl text-blush/80 max-w-2xl mx-auto mb-12 font-medium leading-relaxed">
+        Linguagem técnica, específica e orientada à performance. Um sistema de design maduro, criado para profissionais que exigem precisão.
+      </p>
+      
+      <div class="reveal flex flex-col sm:flex-row justify-center gap-6">
+        <a href="#typography" class="btn-primary bg-orange text-ink hover:bg-paper hover:text-ink border-none shadow-[0_0_20px_rgba(229,133,72,0.4)] hover:shadow-[0_0_30px_rgba(255,250,247,0.6)]">
+          Explorar Sistema
+          <i data-lucide="arrow-down" class="w-5 h-5"></i>
+        </a>
+        <a href="#components" class="btn-outline border-blush/50 text-blush hover:bg-blush hover:text-ink hover:border-blush">
+          Ver Componentes
+          <i data-lucide="layers" class="w-5 h-5"></i>
+        </a>
+      </div>
+    </div>
+    
+    <div class="reveal absolute bottom-12 left-1/2 -translate-x-1/2 flex flex-col items-center gap-3 z-10">
+      <span class="text-[10px] uppercase tracking-widest text-blush/60 font-bold">Descubra</span>
+      <div class="w-[1px] h-16 bg-gradient-to-b from-orange to-transparent animate-pulse"></div>
+    </div>
+  </section>
+
+  <!-- 2. TIPOGRAFIA -->
+  <section id="typography" class="py-32 px-6 max-w-7xl mx-auto relative">
+    <div class="text-center mb-20 reveal">
+      <span class="section-label">01 — Fundações</span>
+      <h2 class="text-4xl md:text-5xl font-extrabold text-wine tracking-tight mb-4">Tipografia</h2>
+      <p class="text-ink/70 max-w-2xl mx-auto text-lg">Construção geométrica e contemporânea. Pesos variados permitem contraste e hierarquia sem perder a leveza. Fonte primária: Raleway.</p>
+    </div>
+
+    <div class="grid grid-cols-1 lg:grid-cols-12 gap-12">
+      <!-- Font Scale -->
+      <div class="lg:col-span-7 space-y-8">
+        <div class="glass-panel p-10 rounded-[32px] reveal-left shadow-2xl shadow-wine/5">
+          <div class="space-y-8">
+            <div class="border-b border-wine/10 pb-6 group">
+              <span class="text-xs text-terracotta font-bold uppercase tracking-[0.14em] block mb-2 transition-transform group-hover:translate-x-2">h1 / 44px / ExtraBold / -1% letter-spacing</span>
+              <h1 class="text-[44px] font-extrabold leading-[1.1] tracking-[-0.01em] text-wine">LaCoque Expert</h1>
+            </div>
+            <div class="border-b border-wine/10 pb-6 group">
+              <span class="text-xs text-terracotta font-bold uppercase tracking-[0.14em] block mb-2 transition-transform group-hover:translate-x-2">h2 / 28px / ExtraBold / 0</span>
+              <h2 class="text-[28px] font-extrabold leading-[1.2] text-wine">A ciência por trás do fio</h2>
+            </div>
+            <div class="border-b border-wine/10 pb-6 group">
+              <span class="text-xs text-terracotta font-bold uppercase tracking-[0.14em] block mb-2 transition-transform group-hover:translate-x-2">h3 / 16px / Bold / 0</span>
+              <h3 class="text-[16px] font-bold leading-[1.3] text-terracotta">Tratamentos Profissionais</h3>
+            </div>
+            <div class="border-b border-wine/10 pb-6 group">
+              <span class="text-xs text-terracotta font-bold uppercase tracking-[0.14em] block mb-2 transition-transform group-hover:translate-x-2">body-lg / 17px / Regular / 0</span>
+              <p class="text-[17px] font-normal leading-[1.55] text-ink">Linguagem técnica, específica e orientada à performance. A marca aprofunda: explica o porquê, o como e o que esperar.</p>
+            </div>
+            <div class="border-b border-wine/10 pb-6 group">
+              <span class="text-xs text-terracotta font-bold uppercase tracking-[0.14em] block mb-2 transition-transform group-hover:translate-x-2">body / 15.5px / Regular / 0</span>
+              <p class="text-[15.5px] font-normal leading-[1.55] text-ink/80">Atua na superfície e na estrutura do fio, melhorando a resposta da curvatura.</p>
+            </div>
+            <div class="border-b border-wine/10 pb-6 group">
+              <span class="text-xs text-terracotta font-bold uppercase tracking-[0.14em] block mb-2 transition-transform group-hover:translate-x-2">eyebrow / 13px / Bold / 14% letter-spacing / Uppercase</span>
+              <p class="text-[13px] font-bold leading-[1.5] text-orange uppercase tracking-[0.14em]">Referência de Marca</p>
+            </div>
+            <div class="group">
+              <span class="text-xs text-terracotta font-bold uppercase tracking-[0.14em] block mb-2 transition-transform group-hover:translate-x-2">caption / 12.5px / Regular / 0</span>
+              <p class="text-[12.5px] font-normal leading-[1.5] text-ink/60">Tons mais densos e maduros que a marca consumidor final.</p>
+            </div>
+          </div>
+        </div>
+      </div>
+      
+      <!-- Font Details -->
+      <div class="lg:col-span-5 h-full">
+        <div class="glass-panel-dark p-10 rounded-[32px] h-full flex flex-col justify-center relative overflow-hidden reveal-right shadow-2xl shadow-ink/20">
+          <div class="absolute -right-10 -top-10 text-[250px] font-extrabold text-paper/5 leading-none pointer-events-none select-none">Aa</div>
+          <h3 class="text-4xl font-extrabold text-blush mb-8 tracking-tighter">Raleway</h3>
+          <ul class="space-y-6 text-paper/80 z-10">
+            <li class="flex flex-col gap-1 border-b border-paper/10 pb-4">
+              <span class="font-bold text-orange uppercase tracking-widest text-xs">Primary Family</span>
+              <span class="font-medium text-xl">'Raleway', sans-serif</span>
+            </li>
+            <li class="flex flex-col gap-1 border-b border-paper/10 pb-4">
+              <span class="font-bold text-orange uppercase tracking-widest text-xs">Fallback Stack</span>
+              <span class="font-light text-lg">Arial, Helvetica, sans-serif</span>
+            </li>
+            <li class="flex flex-col gap-1 border-b border-paper/10 pb-4">
+              <span class="font-bold text-orange uppercase tracking-widest text-xs">Loading Strategy</span>
+              <span class="font-light text-lg">Google Fonts API / swap</span>
+            </li>
+            <li class="flex flex-col gap-3 pt-4">
+              <span class="font-bold text-orange uppercase tracking-widest text-xs">Available Weights</span>
+              <div class="flex flex-wrap gap-3">
+                <span class="px-4 py-2 bg-paper/10 hover:bg-orange hover:text-ink transition-colors rounded-xl text-sm font-light">300 Light</span>
+                <span class="px-4 py-2 bg-paper/10 hover:bg-orange hover:text-ink transition-colors rounded-xl text-sm font-normal">400 Regular</span>
+                <span class="px-4 py-2 bg-paper/10 hover:bg-orange hover:text-ink transition-colors rounded-xl text-sm font-medium">500 Medium</span>
+                <span class="px-4 py-2 bg-paper/10 hover:bg-orange hover:text-ink transition-colors rounded-xl text-sm font-bold">700 Bold</span>
+                <span class="px-4 py-2 bg-paper/10 hover:bg-orange hover:text-ink transition-colors rounded-xl text-sm font-extrabold">800 ExtraBold</span>
+              </div>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 3. SISTEMA DE CORES -->
+  <section id="colors" class="py-32 px-6 bg-blush/20 border-y border-wine/5 relative">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-20 reveal">
+        <span class="section-label">02 — Fundações</span>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-wine tracking-tight mb-4">Sistema de Cores</h2>
+        <p class="text-ink/70 max-w-2xl mx-auto text-lg">Vinho e terracota comunicam precisão e autoridade, equilibrados por nuances suaves de blush e paper.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-10">
+        <!-- Vinho -->
+        <div class="rounded-[32px] overflow-hidden bg-white shadow-xl shadow-wine/5 reveal glow-effect group hover:-translate-y-2 transition-transform duration-500">
+          <div class="h-48 bg-wine w-full relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+            <div class="absolute bottom-5 left-6 text-paper font-bold text-2xl tracking-tight">Vinho</div>
+          </div>
+          <div class="p-8">
+            <div class="flex justify-between items-center mb-6 pb-6 border-b border-ink/5">
+              <span class="text-xs font-bold text-ink/40 uppercase tracking-widest">Role</span>
+              <span class="text-sm font-bold text-ink">Primary / Text / BG</span>
+            </div>
+            <div class="space-y-3 text-sm text-ink/70 font-mono">
+              <div class="flex justify-between"><span>HEX</span><span class="font-bold text-ink">#6d1620</span></div>
+              <div class="flex justify-between"><span>RGB</span><span class="font-bold text-ink">109, 22, 32</span></div>
+              <div class="flex justify-between"><span>HSL</span><span class="font-bold text-ink">353°, 66%, 26%</span></div>
+            </div>
+            <div class="mt-8 flex gap-3 h-10">
+              <div class="flex-1 bg-wine rounded-lg shadow-inner"></div>
+              <div class="flex-1 bg-wine/50 rounded-lg flex items-center justify-center text-[10px] text-wine font-bold border border-wine/10">50%</div>
+              <div class="flex-1 bg-wine/25 rounded-lg flex items-center justify-center text-[10px] text-wine font-bold border border-wine/10">25%</div>
+              <div class="flex-1 bg-wine/10 rounded-lg flex items-center justify-center text-[10px] text-wine font-bold border border-wine/10">10%</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Terracota -->
+        <div class="rounded-[32px] overflow-hidden bg-white shadow-xl shadow-wine/5 reveal glow-effect group hover:-translate-y-2 transition-transform duration-500 delay-100">
+          <div class="h-48 bg-terracotta w-full relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/20 to-transparent"></div>
+            <div class="absolute bottom-5 left-6 text-paper font-bold text-2xl tracking-tight">Terracota</div>
+          </div>
+          <div class="p-8">
+            <div class="flex justify-between items-center mb-6 pb-6 border-b border-ink/5">
+              <span class="text-xs font-bold text-ink/40 uppercase tracking-widest">Role</span>
+              <span class="text-sm font-bold text-ink">Secondary / Accent</span>
+            </div>
+            <div class="space-y-3 text-sm text-ink/70 font-mono">
+              <div class="flex justify-between"><span>HEX</span><span class="font-bold text-ink">#af3a20</span></div>
+              <div class="flex justify-between"><span>RGB</span><span class="font-bold text-ink">175, 58, 32</span></div>
+              <div class="flex justify-between"><span>HSL</span><span class="font-bold text-ink">11°, 69%, 41%</span></div>
+            </div>
+            <div class="mt-8 flex gap-3 h-10">
+              <div class="flex-1 bg-terracotta rounded-lg shadow-inner"></div>
+              <div class="flex-1 bg-terracotta/50 rounded-lg flex items-center justify-center text-[10px] text-terracotta font-bold border border-terracotta/10">50%</div>
+              <div class="flex-1 bg-terracotta/25 rounded-lg flex items-center justify-center text-[10px] text-terracotta font-bold border border-terracotta/10">25%</div>
+              <div class="flex-1 bg-terracotta/10 rounded-lg flex items-center justify-center text-[10px] text-terracotta font-bold border border-terracotta/10">10%</div>
+            </div>
+          </div>
+        </div>
+
+        <!-- Laranja -->
+        <div class="rounded-[32px] overflow-hidden bg-white shadow-xl shadow-wine/5 reveal glow-effect group hover:-translate-y-2 transition-transform duration-500 delay-200">
+          <div class="h-48 bg-orange w-full relative overflow-hidden">
+            <div class="absolute inset-0 bg-gradient-to-t from-black/10 to-transparent"></div>
+            <div class="absolute bottom-5 left-6 text-ink font-bold text-2xl tracking-tight">Laranja</div>
+          </div>
+          <div class="p-8">
+            <div class="flex justify-between items-center mb-6 pb-6 border-b border-ink/5">
+              <span class="text-xs font-bold text-ink/40 uppercase tracking-widest">Role</span>
+              <span class="text-sm font-bold text-ink">Decorative / Badge</span>
+            </div>
+            <div class="space-y-3 text-sm text-ink/70 font-mono">
+              <div class="flex justify-between"><span>HEX</span><span class="font-bold text-ink">#e58548</span></div>
+              <div class="flex justify-between"><span>RGB</span><span class="font-bold text-ink">229, 133, 72</span></div>
+              <div class="flex justify-between"><span>HSL</span><span class="font-bold text-ink">23°, 75%, 59%</span></div>
+            </div>
+            <div class="mt-8 flex gap-3 h-10">
+              <div class="flex-1 bg-orange rounded-lg shadow-inner"></div>
+              <div class="flex-1 bg-orange/50 rounded-lg flex items-center justify-center text-[10px] text-orange font-bold border border-orange/10">50%</div>
+              <div class="flex-1 bg-orange/25 rounded-lg flex items-center justify-center text-[10px] text-orange font-bold border border-orange/10">25%</div>
+              <div class="flex-1 bg-orange/10 rounded-lg flex items-center justify-center text-[10px] text-orange font-bold border border-orange/10">10%</div>
+            </div>
+          </div>
+        </div>
+        
+        <!-- Neutrals -->
+        <div class="rounded-[32px] overflow-hidden bg-white shadow-xl shadow-wine/5 reveal glow-effect group hover:-translate-y-2 transition-transform duration-500">
+          <div class="h-40 bg-blush w-full relative border-b border-ink/5">
+            <div class="absolute bottom-5 left-6 text-wine font-bold text-2xl tracking-tight">Rosa Claro</div>
+          </div>
+          <div class="p-8">
+            <div class="flex justify-between items-center mb-6 pb-6 border-b border-ink/5">
+              <span class="text-xs font-bold text-ink/40 uppercase tracking-widest">Role</span>
+              <span class="text-sm font-bold text-ink">Surface / BG</span>
+            </div>
+            <div class="space-y-3 text-sm text-ink/70 font-mono">
+              <div class="flex justify-between"><span>HEX</span><span class="font-bold text-ink">#fce7e0</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-[32px] overflow-hidden bg-white shadow-xl shadow-wine/5 reveal glow-effect group hover:-translate-y-2 transition-transform duration-500 delay-100">
+          <div class="h-40 bg-ink w-full relative">
+            <div class="absolute bottom-5 left-6 text-paper font-bold text-2xl tracking-tight">Ink</div>
+          </div>
+          <div class="p-8">
+            <div class="flex justify-between items-center mb-6 pb-6 border-b border-ink/5">
+              <span class="text-xs font-bold text-ink/40 uppercase tracking-widest">Role</span>
+              <span class="text-sm font-bold text-ink">Text / Dark BG</span>
+            </div>
+            <div class="space-y-3 text-sm text-ink/70 font-mono">
+              <div class="flex justify-between"><span>HEX</span><span class="font-bold text-ink">#3a1015</span></div>
+            </div>
+          </div>
+        </div>
+
+        <div class="rounded-[32px] overflow-hidden bg-white shadow-xl shadow-wine/5 reveal glow-effect group hover:-translate-y-2 transition-transform duration-500 delay-200">
+          <div class="h-40 bg-paper w-full relative border-b border-ink/5">
+            <div class="absolute bottom-5 left-6 text-ink font-bold text-2xl tracking-tight">Paper</div>
+          </div>
+          <div class="p-8">
+            <div class="flex justify-between items-center mb-6 pb-6 border-b border-ink/5">
+              <span class="text-xs font-bold text-ink/40 uppercase tracking-widest">Role</span>
+              <span class="text-sm font-bold text-ink">Main BG</span>
+            </div>
+            <div class="space-y-3 text-sm text-ink/70 font-mono">
+              <div class="flex justify-between"><span>HEX</span><span class="font-bold text-ink">#fffaf7</span></div>
+            </div>
+          </div>
+        </div>
+
+      </div>
+
+      <!-- Gradients -->
+      <div class="mt-20 reveal">
+        <h3 class="text-2xl font-extrabold text-wine mb-8">Gradientes & Intenções</h3>
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+          <div class="h-40 rounded-[32px] bg-gradient-premium flex items-center justify-center shadow-2xl shadow-ink/20 hover:scale-[1.02] transition-transform duration-500 cursor-pointer group">
+            <span class="text-blush font-bold tracking-[0.2em] uppercase text-sm group-hover:scale-110 transition-transform">Premium Dark</span>
+          </div>
+          <div class="h-40 rounded-[32px] bg-gradient-to-r from-orange via-terracotta to-wine flex items-center justify-center shadow-2xl shadow-terracotta/20 hover:scale-[1.02] transition-transform duration-500 cursor-pointer group">
+            <span class="text-paper font-bold tracking-[0.2em] uppercase text-sm group-hover:scale-110 transition-transform">Vibrant Action</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- 4. UI COMPONENTS -->
+  <section id="components" class="py-32 px-6 max-w-7xl mx-auto overflow-hidden">
+    <div class="text-center mb-20 reveal">
+      <span class="section-label">03 — Interface</span>
+      <h2 class="text-4xl md:text-5xl font-extrabold text-wine tracking-tight mb-4">Componentes UI</h2>
+      <p class="text-ink/70 max-w-2xl mx-auto text-lg">Elementos interativos com micro-animações, sombras suaves e hierarquia clara para guiar a atenção do profissional.</p>
+    </div>
+
+    <!-- Navbars & Tabs -->
+    <div class="glass-panel p-10 rounded-[32px] mb-12 reveal shadow-xl shadow-wine/5">
+      <h3 class="text-2xl font-extrabold text-wine mb-8 pb-6 border-b border-wine/10">Navegação & Navbars</h3>
+      <div class="bg-blush/30 rounded-2xl p-6 border border-wine/5">
+        <!-- Mock Navbar -->
+        <div class="flex justify-between items-center bg-paper py-4 px-6 rounded-xl shadow-sm border border-wine/10 mb-8">
+          <div class="font-extrabold text-wine text-lg">LaCoque</div>
+          <div class="flex gap-6">
+            <a href="#" class="text-terracotta font-bold text-sm border-b-2 border-terracotta pb-1">Produtos</a>
+            <a href="#" class="text-ink/60 hover:text-ink font-bold text-sm transition-colors">Técnicas</a>
+            <a href="#" class="text-ink/60 hover:text-ink font-bold text-sm transition-colors">Contato</a>
+          </div>
+          <button class="w-8 h-8 rounded-full bg-blush flex items-center justify-center text-terracotta hover:bg-terracotta hover:text-paper transition-colors">
+            <i data-lucide="user" class="w-4 h-4"></i>
+          </button>
+        </div>
+        
+        <!-- Tabs -->
+        <div class="flex gap-4 border-b border-wine/10">
+          <button class="px-6 py-3 text-sm font-bold text-terracotta border-b-2 border-terracotta">Visão Geral</button>
+          <button class="px-6 py-3 text-sm font-bold text-ink/50 hover:text-ink transition-colors">Especificações</button>
+          <button class="px-6 py-3 text-sm font-bold text-ink/50 hover:text-ink transition-colors">Modo de Uso</button>
+        </div>
+      </div>
+    </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-12 mb-12">
+      
+      <!-- Buttons -->
+      <div class="glass-panel p-10 rounded-[32px] reveal shadow-xl shadow-wine/5">
+        <h3 class="text-2xl font-extrabold text-wine mb-8 pb-6 border-b border-wine/10">Botões</h3>
+        <div class="space-y-8">
+          <div class="flex flex-wrap gap-5 items-center">
+            <button class="btn-primary">
+              Primário
+              <i data-lucide="arrow-right" class="w-4 h-4"></i>
+            </button>
+            <button class="btn-outline">
+              Secundário
+            </button>
+          </div>
+          <div class="flex flex-wrap gap-5 items-center">
+            <button class="btn-primary bg-ink text-paper hover:bg-terracotta shadow-ink/20">
+              Ação Escura
+            </button>
+            <button class="btn-primary bg-orange text-ink hover:bg-ink hover:text-paper shadow-orange/30">
+              Destaque
+            </button>
+          </div>
+          <div class="pt-4">
+            <button class="flex items-center gap-2 text-wine font-bold hover:text-terracotta transition-colors group text-sm uppercase tracking-widest">
+              Link Animado
+              <i data-lucide="arrow-right" class="w-4 h-4 group-hover:translate-x-2 transition-transform"></i>
+            </button>
+          </div>
+        </div>
+      </div>
+
+      <!-- Badges & Tooltips -->
+      <div class="glass-panel p-10 rounded-[32px] reveal shadow-xl shadow-wine/5">
+        <h3 class="text-2xl font-extrabold text-wine mb-8 pb-6 border-b border-wine/10">Badges & Tooltips</h3>
+        <div class="space-y-10">
+          <div class="flex flex-wrap gap-4">
+            <span class="px-4 py-1.5 bg-terracotta/10 text-terracotta font-bold text-[11px] uppercase tracking-[0.15em] rounded-full border border-terracotta/20">Novo</span>
+            <span class="px-4 py-1.5 bg-wine/10 text-wine font-bold text-[11px] uppercase tracking-[0.15em] rounded-full border border-wine/20">Profissional</span>
+            <span class="px-4 py-1.5 bg-orange/10 text-orange font-bold text-[11px] uppercase tracking-[0.15em] rounded-full border border-orange/20">Destaque</span>
+            <span class="px-4 py-1.5 bg-ink text-paper font-bold text-[11px] uppercase tracking-[0.15em] rounded-full shadow-lg shadow-ink/20">Exclusivo</span>
+          </div>
+          
+          <div class="pt-2">
+            <p class="text-sm font-bold text-ink/50 uppercase tracking-widest mb-4">Interação Tooltip</p>
+            <div class="relative inline-block group">
+              <button class="w-12 h-12 rounded-full bg-blush text-wine flex items-center justify-center hover:bg-wine hover:text-blush transition-colors shadow-sm">
+                <i data-lucide="info" class="w-5 h-5"></i>
+              </button>
+              <!-- Tooltip -->
+              <div class="absolute bottom-full left-1/2 -translate-x-1/2 mb-3 w-56 p-4 bg-ink text-paper text-xs rounded-2xl opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all duration-300 translate-y-2 group-hover:translate-y-0 shadow-2xl shadow-ink/30 z-10 text-center font-medium leading-relaxed">
+                Informação técnica detalhada sobre o componente e sua formulação.
+                <div class="absolute top-full left-1/2 -translate-x-1/2 border-[6px] border-transparent border-t-ink"></div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Inputs & Forms -->
+    <div class="glass-panel p-10 rounded-[32px] mb-12 reveal shadow-xl shadow-wine/5">
+      <h3 class="text-2xl font-extrabold text-wine mb-8 pb-6 border-b border-wine/10">Inputs & Seletores</h3>
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-10">
+        <div class="space-y-6">
+          <div>
+            <label class="block text-[11px] font-bold text-terracotta uppercase tracking-[0.15em] mb-3">E-mail Profissional</label>
+            <div class="relative group">
+              <i data-lucide="mail" class="absolute left-4 top-1/2 -translate-y-1/2 w-5 h-5 text-ink/30 group-focus-within:text-terracotta transition-colors"></i>
+              <input type="email" placeholder="contato@salao.com.br" class="w-full bg-white border border-wine/10 rounded-2xl py-4 pl-12 pr-4 text-ink font-medium focus:outline-none focus:border-terracotta focus:ring-4 focus:ring-terracotta/10 transition-all shadow-sm">
+            </div>
+          </div>
+          <div>
+            <label class="block text-[11px] font-bold text-terracotta uppercase tracking-[0.15em] mb-3">Especialidade</label>
+            <div class="relative group">
+              <select class="w-full bg-white border border-wine/10 rounded-2xl py-4 px-5 text-ink font-medium focus:outline-none focus:border-terracotta focus:ring-4 focus:ring-terracotta/10 transition-all shadow-sm appearance-none cursor-pointer">
+                <option>Colorimetria Avançada</option>
+                <option>Corte e Geometria</option>
+                <option>Tratamento Capilar Intensivo</option>
+              </select>
+              <i data-lucide="chevron-down" class="absolute right-4 top-1/2 -translate-y-1/2 w-5 h-5 text-ink/40 pointer-events-none group-focus-within:text-terracotta transition-colors"></i>
+            </div>
+          </div>
+        </div>
+        <div class="space-y-8 flex flex-col justify-center bg-blush/30 p-8 rounded-3xl border border-wine/5">
+          <label class="flex items-center gap-4 cursor-pointer group">
+            <div class="relative flex items-center justify-center w-6 h-6 rounded border-2 border-wine/20 bg-white group-hover:border-terracotta transition-colors">
+              <input type="checkbox" class="peer sr-only">
+              <i data-lucide="check" class="w-4 h-4 text-terracotta opacity-0 peer-checked:opacity-100 transition-opacity"></i>
+            </div>
+            <span class="text-sm font-bold text-ink/70 group-hover:text-ink transition-colors">Aceito os termos técnicos do produto</span>
+          </label>
+          
+          <label class="flex items-center gap-4 cursor-pointer group">
+            <div class="relative w-14 h-7 bg-wine/10 rounded-full peer-focus:outline-none peer-focus:ring-4 peer-focus:ring-terracotta/20 peer peer-checked:after:translate-x-full peer-checked:after:border-white after:content-[''] after:absolute after:top-[2px] after:left-[2px] after:bg-white after:border-wine/10 after:border after:rounded-full after:h-6 after:w-6 after:transition-all peer-checked:bg-terracotta shadow-inner">
+              <input type="checkbox" value="" class="sr-only peer" checked>
+            </div>
+            <span class="text-sm font-bold text-ink/70 group-hover:text-ink transition-colors">Receber atualizações de fórmulas</span>
+          </label>
+        </div>
+      </div>
+    </div>
+
+    <!-- Cards, Sections & Modals -->
+    <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
+      
+      <!-- Feature Card -->
+      <div class="col-span-1 glass-panel p-8 rounded-[32px] hover:shadow-2xl hover:shadow-wine/10 hover:-translate-y-2 transition-all duration-500 reveal group">
+        <div class="w-16 h-16 bg-blush rounded-2xl flex items-center justify-center mb-6 group-hover:bg-terracotta group-hover:text-white transition-colors text-terracotta shadow-sm">
+          <i data-lucide="flask-conical" class="w-8 h-8"></i>
+        </div>
+        <h3 class="text-2xl font-extrabold text-wine mb-3">Química Precisa</h3>
+        <p class="text-ink/70 text-sm leading-relaxed mb-8">Atua na superfície e na estrutura do fio, melhorando a resposta da curvatura com ativos nobres.</p>
+        <a href="#" class="inline-flex items-center gap-2 text-terracotta font-bold text-xs uppercase tracking-[0.1em] hover:text-wine transition-colors">
+          Ver Tabela Técnica <i data-lucide="arrow-right" class="w-4 h-4"></i>
+        </a>
+      </div>
+
+      <!-- Image Card (Section component) -->
+      <div class="col-span-1 rounded-[32px] overflow-hidden relative group reveal">
+        <div class="absolute inset-0 bg-ink/20 group-hover:bg-transparent transition-colors duration-700 z-10"></div>
+        <div class="absolute inset-0 bg-gradient-to-t from-ink via-ink/60 to-transparent opacity-90 z-10"></div>
+        <img src="https://images.unsplash.com/photo-1522337660859-02fbefca4702?q=80&w=2069&auto=format&fit=crop" class="w-full h-full object-cover group-hover:scale-110 transition-transform duration-[1.5s]">
+        <div class="absolute bottom-0 left-0 p-8 z-20 w-full transform translate-y-6 group-hover:translate-y-0 transition-transform duration-500">
+          <span class="px-3 py-1.5 bg-orange text-ink font-bold text-[10px] uppercase tracking-[0.15em] rounded-full mb-4 inline-block shadow-lg">Masterclass</span>
+          <h3 class="text-2xl font-extrabold text-paper mb-2 leading-tight">Colorimetria<br/>Avançada</h3>
+          <p class="text-paper/70 text-sm opacity-0 group-hover:opacity-100 transition-opacity duration-500 delay-100 font-medium">Dominando tons e subtons exatos.</p>
+        </div>
+      </div>
+
+      <!-- Modal Trigger Simulation -->
+      <div class="col-span-1 glass-panel-dark p-8 rounded-[32px] flex flex-col justify-center items-center text-center reveal border border-terracotta/20 relative overflow-hidden group">
+        <div class="absolute inset-0 bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-terracotta/20 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
+        <i data-lucide="layout-template" class="w-14 h-14 text-terracotta mb-5 relative z-10 group-hover:scale-110 transition-transform"></i>
+        <h3 class="text-2xl font-extrabold text-paper mb-3 relative z-10">Componente Modal</h3>
+        <p class="text-paper/60 text-sm mb-8 relative z-10 px-2 leading-relaxed">Modais utilizam glassmorphism escuro para focar a atenção do profissional na informação técnica.</p>
+        <button class="btn-primary bg-terracotta text-paper hover:bg-orange hover:text-ink w-full justify-center relative z-10 border-none" onclick="alert('Modal Simulation: Aqui abriria o dialog técnico com especificações completas.')">
+          Abrir Modal
+        </button>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- 5. ICONOGRAFIA E ANIMAÇÕES -->
+  <section id="icons" class="py-32 px-6 bg-wine text-blush relative overflow-hidden">
+    <!-- Animated background patterns -->
+    <div class="absolute inset-0 opacity-10">
+      <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] bg-[radial-gradient(circle_at_center,_var(--tw-gradient-stops))] from-orange/30 via-transparent to-transparent animate-pulse rounded-full"></div>
+    </div>
+    
+    <div class="max-w-7xl mx-auto relative z-10">
+      <div class="text-center mb-20 reveal">
+        <span class="section-label text-orange">04 — Detalhes</span>
+        <h2 class="text-4xl md:text-5xl font-extrabold text-paper tracking-tight mb-4">Ícones & Animações</h2>
+        <p class="text-blush/70 max-w-2xl mx-auto text-lg">Ícones vetorizados e limpos (Lucide & Iconify), complementados por animações sutis inspiradas no GSAP que respondem ao contexto e ação.</p>
+      </div>
+
+      <div class="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-6 mb-20">
+        <!-- Icons mapping -->
+        <div class="flex flex-col items-center justify-center p-8 bg-ink/40 rounded-[24px] border border-blush/5 hover:bg-terracotta hover:border-terracotta transition-all duration-300 group cursor-pointer reveal hover:shadow-2xl hover:shadow-terracotta/20 hover:-translate-y-2">
+          <i data-lucide="scissors" class="w-10 h-10 mb-4 text-orange group-hover:text-paper group-hover:scale-110 transition-transform"></i>
+          <span class="text-xs font-bold uppercase tracking-widest text-blush/50 group-hover:text-paper">Corte</span>
+        </div>
+        <div class="flex flex-col items-center justify-center p-8 bg-ink/40 rounded-[24px] border border-blush/5 hover:bg-terracotta hover:border-terracotta transition-all duration-300 group cursor-pointer reveal hover:shadow-2xl hover:shadow-terracotta/20 hover:-translate-y-2 delay-75">
+          <i data-lucide="droplet" class="w-10 h-10 mb-4 text-orange group-hover:text-paper group-hover:scale-110 transition-transform"></i>
+          <span class="text-xs font-bold uppercase tracking-widest text-blush/50 group-hover:text-paper">Hidratação</span>
+        </div>
+        <div class="flex flex-col items-center justify-center p-8 bg-ink/40 rounded-[24px] border border-blush/5 hover:bg-terracotta hover:border-terracotta transition-all duration-300 group cursor-pointer reveal hover:shadow-2xl hover:shadow-terracotta/20 hover:-translate-y-2 delay-100">
+          <i data-lucide="flask-round" class="w-10 h-10 mb-4 text-orange group-hover:text-paper group-hover:scale-110 transition-transform"></i>
+          <span class="text-xs font-bold uppercase tracking-widest text-blush/50 group-hover:text-paper">Química</span>
+        </div>
+        <div class="flex flex-col items-center justify-center p-8 bg-ink/40 rounded-[24px] border border-blush/5 hover:bg-terracotta hover:border-terracotta transition-all duration-300 group cursor-pointer reveal hover:shadow-2xl hover:shadow-terracotta/20 hover:-translate-y-2 delay-150">
+          <iconify-icon icon="solar:star-bold" class="text-[40px] mb-4 text-orange group-hover:text-paper group-hover:scale-110 transition-transform"></iconify-icon>
+          <span class="text-xs font-bold uppercase tracking-widest text-blush/50 group-hover:text-paper">Premium</span>
+        </div>
+        <div class="flex flex-col items-center justify-center p-8 bg-ink/40 rounded-[24px] border border-blush/5 hover:bg-terracotta hover:border-terracotta transition-all duration-300 group cursor-pointer reveal hover:shadow-2xl hover:shadow-terracotta/20 hover:-translate-y-2 delay-200">
+          <iconify-icon icon="solar:shield-check-bold" class="text-[40px] mb-4 text-orange group-hover:text-paper group-hover:scale-110 transition-transform"></iconify-icon>
+          <span class="text-xs font-bold uppercase tracking-widest text-blush/50 group-hover:text-paper">Garantia</span>
+        </div>
+        <div class="flex flex-col items-center justify-center p-8 bg-ink/40 rounded-[24px] border border-blush/5 hover:bg-terracotta hover:border-terracotta transition-all duration-300 group cursor-pointer reveal hover:shadow-2xl hover:shadow-terracotta/20 hover:-translate-y-2 delay-300">
+          <iconify-icon icon="solar:book-bookmark-bold" class="text-[40px] mb-4 text-orange group-hover:text-paper group-hover:scale-110 transition-transform"></iconify-icon>
+          <span class="text-xs font-bold uppercase tracking-widest text-blush/50 group-hover:text-paper">Educação</span>
+        </div>
+      </div>
+      
+      <!-- Animation Showcase -->
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-8 reveal">
+        <div class="bg-ink/30 p-10 rounded-[32px] border border-paper/5 flex flex-col items-center justify-center text-center relative group hover:bg-ink/50 transition-colors">
+          <div class="w-20 h-20 rounded-[24px] bg-terracotta flex items-center justify-center mb-6 group-hover:animate-bounce shadow-lg shadow-terracotta/20">
+            <i data-lucide="arrow-up" class="w-8 h-8 text-paper"></i>
+          </div>
+          <h4 class="text-xl font-extrabold text-paper mb-2">Bounce Hover</h4>
+          <p class="text-sm text-blush/60 font-medium">Interação lúdica para ações de destaque</p>
+        </div>
+        <div class="bg-ink/30 p-10 rounded-[32px] border border-paper/5 flex flex-col items-center justify-center text-center relative group hover:bg-ink/50 transition-colors">
+          <div class="w-20 h-20 rounded-[24px] bg-orange flex items-center justify-center mb-6 relative shadow-lg shadow-orange/20">
+             <div class="absolute inset-0 rounded-[24px] border-2 border-orange group-hover:animate-ping opacity-75"></div>
+            <i data-lucide="bell" class="w-8 h-8 text-ink"></i>
+          </div>
+          <h4 class="text-xl font-extrabold text-paper mb-2">Pulse Alert</h4>
+          <p class="text-sm text-blush/60 font-medium">Chamando atenção para notificações críticas</p>
+        </div>
+        <div class="bg-ink/30 p-10 rounded-[32px] border border-paper/5 flex flex-col items-center justify-center text-center relative group hover:bg-ink/50 transition-colors">
+          <div class="w-20 h-20 rounded-[24px] bg-paper flex items-center justify-center mb-6 group-hover:rotate-180 transition-transform duration-1000 shadow-lg shadow-paper/10">
+            <i data-lucide="settings" class="w-8 h-8 text-wine"></i>
+          </div>
+          <h4 class="text-xl font-extrabold text-paper mb-2">Smooth Rotate</h4>
+          <p class="text-sm text-blush/60 font-medium">Transições fluidas para estados de carregamento e engrenagens</p>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
+  <!-- Footer -->
+  <footer class="bg-ink text-paper py-20 px-6 text-center border-t border-wine/20">
+    <div class="max-w-7xl mx-auto flex flex-col items-center justify-center gap-8">
+      <div class="text-4xl font-extrabold tracking-tighter text-paper">LACOQUE <span class="text-terracotta font-light">EXPERT</span></div>
+      <p class="text-paper/60 text-lg max-w-lg font-medium">Mais do que tendência, buscam consistência. Mais do que estética, buscam controle absoluto.</p>
+      <div class="flex gap-5 mt-4">
+        <a href="#" class="w-12 h-12 rounded-full bg-wine/30 flex items-center justify-center hover:bg-terracotta hover:scale-110 transition-all text-blush hover:text-white">
+          <i data-lucide="instagram" class="w-5 h-5"></i>
+        </a>
+        <a href="#" class="w-12 h-12 rounded-full bg-wine/30 flex items-center justify-center hover:bg-terracotta hover:scale-110 transition-all text-blush hover:text-white">
+          <i data-lucide="linkedin" class="w-5 h-5"></i>
+        </a>
+      </div>
+      <p class="text-[11px] text-paper/30 mt-12 font-bold uppercase tracking-[0.1em]">© 2026 LaCoque Expert. Todos os direitos reservados. Sistema Híbrido.</p>
+    </div>
+  </footer>
+
+  <!-- Scripts for Interactions and GSAP Animations -->
+  <script>
+    // Initialize Lucide Icons
+    lucide.createIcons();
+
+    // GSAP Scroll Animations
+    gsap.registerPlugin(ScrollTrigger);
+
+    // Navbar blur on scroll
+    window.addEventListener('scroll', () => {
+      const nav = document.getElementById('navbar');
+      if (window.scrollY > 50) {
+        nav.classList.add('shadow-xl', 'bg-paper/95', 'backdrop-blur-xl', 'py-4');
+        nav.classList.remove('bg-transparent', 'py-5');
+      } else {
+        nav.classList.remove('shadow-xl', 'bg-paper/95', 'backdrop-blur-xl', 'py-4');
+        nav.classList.add('bg-transparent', 'py-5');
+      }
+    });
+
+    // Reveal animations using GSAP (as inspired by Monolith)
+    const revealElements = document.querySelectorAll('.reveal');
+    revealElements.forEach((el, index) => {
+      gsap.to(el, {
+        scrollTrigger: {
+          trigger: el,
+          start: "top 90%",
+          toggleActions: "play none none reverse"
+        },
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        ease: "power4.out",
+        delay: index % 3 * 0.15
+      });
+    });
+
+    const revealLeftElements = document.querySelectorAll('.reveal-left');
+    revealLeftElements.forEach((el, index) => {
+      gsap.to(el, {
+        scrollTrigger: {
+          trigger: el,
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        },
+        x: 0,
+        opacity: 1,
+        duration: 1.2,
+        ease: "power3.out"
+      });
+    });
+
+    const revealRightElements = document.querySelectorAll('.reveal-right');
+    revealRightElements.forEach((el, index) => {
+      gsap.to(el, {
+        scrollTrigger: {
+          trigger: el,
+          start: "top 85%",
+          toggleActions: "play none none reverse"
+        },
+        x: 0,
+        opacity: 1,
+        duration: 1.2,
+        ease: "power3.out"
+      });
+    });
+
+    // Particles creation for hero (as in Desert Retreat / Monolith)
+    const particlesContainer = document.getElementById('particles');
+    for(let i=0; i<40; i++) {
+      const p = document.createElement('div');
+      p.className = 'particle';
+      const size = Math.random() * 30 + 10;
+      p.style.width = size + 'px';
+      p.style.height = size + 'px';
+      p.style.left = Math.random() * 100 + 'vw';
+      p.style.animationDelay = (Math.random() * 25) + 's';
+      p.style.animationDuration = (Math.random() * 15 + 15) + 's';
+      particlesContainer.appendChild(p);
+    }
+  </script>
+</body>
+</html>

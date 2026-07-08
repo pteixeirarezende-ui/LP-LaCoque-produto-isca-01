@@ -1,0 +1,347 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>LaCoque Expert - Aprenda Penteados Cacheados</title>
+  
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Raleway:wght@300;400;500;700;800&display=swap" rel="stylesheet">
+  
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script src="https://cdn.jsdelivr.net/npm/lucide@latest/dist/umd/lucide.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/vanilla-tilt/1.8.0/vanilla-tilt.min.js"></script>
+
+  <style>
+    :root {
+      --wine: #6d1620;
+      --terracotta: #af3a20;
+      --orange: #e58548;
+      --blush: #fce7e0;
+      --ink: #3a1015;
+      --paper: #fffaf7;
+    }
+    
+    body {
+      font-family: 'Raleway', sans-serif;
+      background-color: var(--ink); /* Dark theme base for hero */
+      color: var(--paper);
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    /* Scrollbar customizada */
+    ::-webkit-scrollbar { width: 8px; }
+    ::-webkit-scrollbar-track { background: var(--ink); }
+    ::-webkit-scrollbar-thumb { background: var(--terracotta); border-radius: 4px; }
+
+    /* Classes inspiradas no Design System */
+    .glass-panel-dark {
+      background: rgba(58, 16, 21, 0.75);
+      backdrop-filter: blur(16px);
+      -webkit-backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(252, 231, 224, 0.05);
+    }
+    
+    .nav-scrolled {
+      background: rgba(58, 16, 21, 0.95);
+      border-bottom: 1px solid rgba(175, 58, 32, 0.3);
+      padding-top: 1rem !important;
+      padding-bottom: 1rem !important;
+      box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+    }
+
+    .btn-primary {
+      background-color: var(--wine);
+      color: var(--blush);
+      padding: 0.875rem 1.75rem;
+      border-radius: 9999px;
+      font-weight: 800;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      border: 1px solid transparent;
+      box-shadow: 0 4px 15px rgba(109, 22, 32, 0.2);
+      text-align: center;
+    }
+    .btn-primary:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(109, 22, 32, 0.4);
+    }
+    
+    .btn-outline {
+      background-color: transparent;
+      color: var(--terracotta);
+      border: 1px solid var(--terracotta);
+      padding: 0.875rem 1.75rem;
+      border-radius: 9999px;
+      font-weight: 800;
+      font-size: 0.875rem;
+      text-transform: uppercase;
+      letter-spacing: 0.1em;
+      transition: all 0.4s ease;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 0.75rem;
+      text-align: center;
+    }
+    .btn-outline:hover {
+      background-color: var(--terracotta);
+      color: var(--paper);
+      transform: translateY(-3px);
+      box-shadow: 0 10px 25px rgba(175, 58, 32, 0.3);
+    }
+
+    .particles-bg {
+      position: absolute;
+      top: 0; left: 0; width: 100%; height: 100%;
+      overflow: hidden;
+      z-index: 0;
+      pointer-events: none;
+    }
+    
+    .particle {
+      position: absolute;
+      border-radius: 50%;
+      background: rgba(229, 133, 72, 0.15);
+      animation: float 25s infinite linear;
+    }
+    
+    @keyframes float {
+      0% { transform: translateY(100vh) scale(0); opacity: 0; }
+      20% { opacity: 1; }
+      80% { opacity: 1; }
+      100% { transform: translateY(-20vh) scale(1.5); opacity: 0; }
+    }
+
+    .glow-effect { position: relative; }
+    .glow-effect::before {
+      content: '';
+      position: absolute;
+      inset: -2px;
+      background: linear-gradient(45deg, var(--wine), var(--terracotta), var(--orange), var(--wine));
+      z-index: -1;
+      border-radius: inherit;
+      background-size: 300%;
+      animation: glowing 10s linear infinite;
+      opacity: 0;
+      transition: opacity 0.4s ease-in-out;
+    }
+    .glow-effect:hover::before { opacity: 0.7; }
+    
+    @keyframes glowing {
+      0% { background-position: 0 0; }
+      50% { background-position: 300% 0; }
+      100% { background-position: 0 0; }
+    }
+    
+    /* Utilitário para animação de entrada */
+    .gsap-reveal {
+      opacity: 0;
+      transform: translateY(30px);
+    }
+  </style>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            wine: '#6d1620',
+            terracotta: '#af3a20',
+            orange: '#e58548',
+            blush: '#fce7e0',
+            ink: '#3a1015',
+            paper: '#fffaf7',
+          },
+          fontFamily: {
+            sans: ['Raleway', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+</head>
+<body class="antialiased selection:bg-orange selection:text-ink">
+
+  <!-- Navegação no topo -->
+  <nav class="fixed w-full z-50 glass-panel-dark py-5 px-6 lg:px-12 flex justify-between items-center transition-all duration-300" id="navbar">
+    <div class="text-xl md:text-2xl font-extrabold text-paper tracking-tighter">
+      LACOQUE <span class="text-terracotta font-light">EXPERT</span>
+    </div>
+    
+    <!-- Menu Central (Placeholders) -->
+    <div class="hidden md:flex gap-8 text-[12px] font-bold text-paper uppercase tracking-[0.15em]">
+      <a href="#" class="hover:text-orange transition-colors relative group">
+        Início
+        <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-orange transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a href="#" class="hover:text-orange transition-colors relative group">
+        Método
+        <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-orange transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a href="#" class="hover:text-orange transition-colors relative group">
+        Depoimentos
+        <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-orange transition-all duration-300 group-hover:w-full"></span>
+      </a>
+      <a href="#" class="hover:text-orange transition-colors relative group">
+        FAQ
+        <span class="absolute -bottom-2 left-0 w-0 h-[2px] bg-orange transition-all duration-300 group-hover:w-full"></span>
+      </a>
+    </div>
+    
+    <!-- CTA Navegação -->
+    <a href="#" class="hidden md:flex btn-primary bg-orange text-ink hover:bg-paper hover:text-ink text-[11px] py-2 px-6 border-none shadow-[0_0_15px_rgba(229,133,72,0.3)]">
+      Garantir Vaga
+    </a>
+  </nav>
+
+  <!-- Hero Section -->
+  <section class="relative min-h-screen flex items-center pt-24 pb-12 overflow-hidden bg-ink">
+    
+    <!-- Fundo e Partículas -->
+    <div class="particles-bg" id="particles"></div>
+    <div class="absolute inset-0 bg-[radial-gradient(ellipse_at_top_right,_var(--tw-gradient-stops))] from-wine/20 via-ink to-ink z-0"></div>
+    
+    <div class="max-w-[1440px] mx-auto w-full grid grid-cols-1 lg:grid-cols-2 gap-12 lg:gap-8 px-6 lg:px-12 xl:px-24 relative z-10">
+      
+      <!-- Coluna Esquerda: Texto -->
+      <div class="flex flex-col justify-center order-2 lg:order-1 pt-8 lg:pt-0 pb-16 lg:pb-0">
+        
+        <!-- Kicker -->
+        <div class="gsap-reveal flex items-center gap-4 mb-6">
+          <div class="w-12 h-[1px] bg-terracotta"></div>
+          <span class="text-[10px] md:text-xs font-bold uppercase tracking-[0.15em] sm:tracking-[0.2em] text-orange">
+            MÉTODO CARLA LACOQUE &middot; MAIS DE 20 ANOS FORMANDO CABELEIREIRAS EM CACHOS
+          </span>
+        </div>
+
+        <!-- Headline Condensada / Uppercase -->
+        <h1 class="gsap-reveal text-[2rem] sm:text-5xl lg:text-[64px] font-extrabold uppercase tracking-tighter leading-[1.05] text-paper mb-6">
+          Existe um serviço, <br class="hidden lg:block" />dentro do <span class="text-transparent bg-clip-text bg-gradient-to-r from-orange via-terracotta to-wine">seu próprio salão,</span> <br/>
+          <span class="text-[0.6em] sm:text-[0.65em] tracking-tight text-paper/90">que você já sabe fazer pela metade do preço que podia cobrar.</span>
+        </h1>
+        
+        <!-- Subheadline -->
+        <p class="gsap-reveal text-paper/70 font-medium text-base lg:text-lg leading-relaxed max-w-xl mb-10">
+          Em 1 hora você aprende as 3 técnicas de penteado em cacheado e crespo que transformam um atendimento de <strong class="text-paper">R$80</strong> em um atendimento de <strong class="text-orange">R$200</strong> — sem comprar equipamento novo, sem fazer outro curso de R$500, sem depender de sorte.
+        </p>
+
+        <!-- CTAs Duplos -->
+        <div class="gsap-reveal flex flex-col sm:flex-row items-center gap-5">
+          
+          <!-- Primary CTA + Microcopy -->
+          <div class="flex flex-col gap-2 w-full sm:w-auto">
+            <a href="#" class="btn-primary bg-orange text-ink hover:bg-paper hover:text-ink border-none shadow-[0_0_20px_rgba(229,133,72,0.4)] hover:shadow-[0_0_30px_rgba(255,250,247,0.6)] w-full sm:w-auto group">
+              Quero aprender agora por R$27,90
+              <i data-lucide="arrow-right" class="w-5 h-5 group-hover:translate-x-1 transition-transform"></i>
+            </a>
+            <div class="flex items-center justify-center sm:justify-start gap-1.5 text-[10px] text-paper/50 font-bold uppercase tracking-widest mt-1">
+              <i data-lucide="smartphone" class="w-3 h-3 text-terracotta"></i> Acesso imediato &middot; Aplicação em 1 hora &middot; Direto no seu celular
+            </div>
+          </div>
+          
+          <!-- Secondary CTA -->
+          <a href="#" class="btn-outline border-paper/20 text-paper hover:bg-paper hover:text-ink w-full sm:w-auto h-[54px]">
+            Ver o que você vai aprender
+          </a>
+        </div>
+      </div>
+      
+      <!-- Coluna Direita: Imagem com Tilt -->
+      <div class="gsap-reveal order-1 lg:order-2 flex items-center justify-center relative">
+        
+        <!-- Container Tilt / Glass -->
+        <div class="relative w-full aspect-[4/5] sm:aspect-square lg:aspect-[4/5] max-w-lg mx-auto rounded-[32px] overflow-hidden shadow-2xl shadow-wine/20 border border-wine/20 glow-effect" 
+             data-tilt data-tilt-max="4" data-tilt-speed="400" data-tilt-glare data-tilt-max-glare="0.2">
+          
+          <!-- Gradiente de overlay sutil -->
+          <div class="absolute inset-0 bg-gradient-to-t from-ink/90 via-ink/20 to-transparent z-10"></div>
+          
+          <!-- Badge Premium sobre a foto -->
+          <div class="absolute top-6 right-6 z-20">
+            <span class="px-4 py-1.5 bg-ink/70 backdrop-blur-md text-orange border border-orange/30 font-bold text-[10px] uppercase tracking-[0.15em] rounded-full shadow-lg flex items-center gap-2">
+              <i data-lucide="star" class="w-3 h-3 fill-orange"></i>
+              Técnica Validada
+            </span>
+          </div>
+
+          <!-- SUBSTITUIR: foto placeholder, trocar por still real da Carla -->
+          <img src="https://images.unsplash.com/photo-1616422329381-80ecdb7d1eb5?q=80&w=2070&auto=format&fit=crop" alt="Finalização Penteado Cacheado" class="w-full h-full object-cover">
+          
+        </div>
+        
+        <!-- Brilhos Decorativos atrás da imagem (Depth) -->
+        <div class="absolute -right-8 -bottom-8 w-64 h-64 bg-terracotta/20 rounded-full blur-[100px] pointer-events-none z-0"></div>
+        <div class="absolute -left-8 top-12 w-48 h-48 bg-orange/15 rounded-full blur-[80px] pointer-events-none z-0"></div>
+      </div>
+
+    </div>
+
+    <!-- Indicador de Scroll -->
+    <div class="absolute bottom-6 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 z-20 gsap-reveal">
+      <span class="text-[9px] uppercase tracking-[0.2em] text-paper/40 font-bold">Rolar para ver mais</span>
+      <div class="w-[1px] h-10 bg-gradient-to-b from-orange to-transparent animate-pulse"></div>
+    </div>
+
+  </section>
+
+  <script>
+    // Inicia os ícones Lucide
+    lucide.createIcons();
+
+    // Lógica e Animações GSAP
+    document.addEventListener("DOMContentLoaded", () => {
+      
+      // 1. Timeline de Entrada (Stagger)
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      
+      tl.to(".gsap-reveal", {
+        y: 0,
+        opacity: 1,
+        duration: 1,
+        stagger: 0.15, // Cascata suave
+        delay: 0.2
+      });
+
+      // 2. Geração de Partículas Dinâmicas do Fundo
+      const particlesContainer = document.getElementById('particles');
+      if (particlesContainer) {
+          for (let i = 0; i < 25; i++) {
+              const particle = document.createElement('div');
+              particle.classList.add('particle');
+              // Tamanhos variados
+              particle.style.width = Math.random() * 8 + 4 + 'px';
+              particle.style.height = particle.style.width;
+              // Posição aleatória na tela
+              particle.style.left = Math.random() * 100 + '%';
+              // Velocidade e delay variáveis para não subirem todas juntas
+              particle.style.animationDuration = Math.random() * 20 + 15 + 's';
+              particle.style.animationDelay = Math.random() * -20 + 's'; // Negativo para iniciar preenchido
+              particlesContainer.appendChild(particle);
+          }
+      }
+
+      // 3. Efeito Glass/Blur na Navbar ao rolar
+      window.addEventListener('scroll', () => {
+        const nav = document.getElementById('navbar');
+        if (window.scrollY > 50) {
+          nav.classList.add('nav-scrolled');
+          nav.classList.remove('py-5');
+        } else {
+          nav.classList.remove('nav-scrolled');
+          nav.classList.add('py-5');
+        }
+      });
+    });
+  </script>
+</body>
+</html>
