@@ -304,6 +304,82 @@
     .cta-pulse:hover {
       animation: none;
     }
+
+    /* ===== SECTION 2: PAIN / IDENTIFICATION ===== */
+
+    .section-wave-top {
+      position: absolute;
+      top: -1px;
+      left: 0;
+      width: 100%;
+      overflow: hidden;
+      line-height: 0;
+      z-index: 2;
+    }
+    .section-wave-top svg {
+      display: block;
+      width: 100%;
+      height: 60px;
+    }
+    @media (min-width: 768px) {
+      .section-wave-top svg { height: 90px; }
+    }
+
+    .impact-text {
+      color: var(--paper);
+      opacity: 0.4;
+      transition: color 0.6s ease, opacity 0.6s ease;
+    }
+    .impact-text.is-active {
+      color: var(--orange);
+      opacity: 1;
+    }
+
+    .closing-quote {
+      position: relative;
+      padding-top: 1.5rem;
+    }
+    .closing-quote::before {
+      content: '';
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 48px;
+      height: 3px;
+      background: linear-gradient(90deg, var(--terracotta), var(--orange));
+      border-radius: 4px;
+    }
+
+    .section-progress {
+      position: absolute;
+      top: 100px;
+      right: 24px;
+      width: 2px;
+      height: calc(100% - 200px);
+      background: rgba(109, 22, 32, 0.06);
+      border-radius: 2px;
+      z-index: 5;
+      overflow: hidden;
+    }
+    .section-progress-fill {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      background: linear-gradient(180deg, var(--terracotta), var(--orange));
+      border-radius: 2px;
+      transform-origin: top center;
+      transform: scaleY(0);
+    }
+    @media (max-width: 1023px) {
+      .section-progress { display: none; }
+    }
+
+    .para-reveal {
+      opacity: 0;
+      transform: translateY(35px);
+    }
   </style>
 </head>
 <body class="antialiased selection:bg-wine selection:text-paper">
@@ -488,6 +564,155 @@
   </section>
 
 
+  <!-- ===== SECTION 2: PAIN / IDENTIFICATION ===== -->
+  <section id="problema" class="relative py-24 md:py-32 lg:py-40 overflow-hidden bg-wine">
+
+    <!-- Parallax Background Image -->
+    <div class="absolute inset-0 w-full h-[120%] -top-[10%] z-0" id="s2-bg-parallax">
+      <!-- SUBSTITUIR: foto placeholder, trocar por still real da Carla/salão -->
+      <img src="https://images.unsplash.com/photo-1595476108010-b4d1f10d5e43?q=80&w=1600&auto=format&fit=crop" alt="Background editorial" class="w-full h-full object-cover">
+    </div>
+
+    <!-- Gradient Overlay tint -->
+    <div class="absolute inset-0 w-full h-full bg-gradient-to-br from-wine/90 via-wine/80 to-terracotta/75 z-0" style="mix-blend-mode: multiply;"></div>
+    <div class="absolute inset-0 w-full h-full bg-wine/50 z-0"></div> <!-- base tint for legibility -->
+
+    <!-- Wave Transition from Paper -->
+    <div class="section-wave-top">
+      <svg viewBox="0 0 1440 90" preserveAspectRatio="none" fill="var(--paper)">
+        <path d="M0,0 L0,60 Q180,90 360,65 Q540,40 720,55 Q900,70 1080,50 Q1260,30 1440,60 L1440,0 Z"></path>
+      </svg>
+    </div>
+
+    <!-- Scroll Progress Indicator (desktop only) -->
+    <div class="section-progress" id="sectionProgress">
+      <div class="section-progress-fill" id="sectionProgressFill"></div>
+    </div>
+
+    <!-- Content -->
+    <div class="relative z-10 max-w-4xl mx-auto px-6 md:px-8">
+
+      <!-- Section Label -->
+      <div class="text-center mb-16 md:mb-20">
+        <span class="section-label para-reveal text-paper border-paper/20 bg-paper/5" id="s2-label">O Problema Real</span>
+      </div>
+
+
+      <!-- BLOCO 1: Editorial Text -->
+      <div class="max-w-3xl mx-auto mb-20 md:mb-28 text-paper">
+
+        <p class="para-reveal text-xl sm:text-2xl md:text-[28px] font-extrabold leading-[1.35] tracking-[-0.01em] mb-8">
+          Deixa eu te contar uma coisa que quase nenhuma cabeleireira admite em voz alta.
+        </p>
+
+        <p class="para-reveal text-lg md:text-xl font-bold leading-[1.5] mb-6">
+          Você não perde dinheiro porque cobra barato.
+        </p>
+
+        <p class="para-reveal text-[15.5px] md:text-[17px] text-paper/80 leading-[1.65] mb-8 font-normal">
+          Você perde dinheiro porque cobra o mesmo preço por dois serviços completamente diferentes — o penteado simples de todo dia, e o penteado de festa que a cliente cacheada pede quando o casamento da irmã dela é sábado.
+        </p>
+
+        <p class="para-reveal impact-text text-xl md:text-2xl font-extrabold leading-[1.3] mb-8 tracking-tight" id="impact1">
+          Mesma cadeira. Mesmo tempo. Preço idêntico.
+        </p>
+
+        <p class="para-reveal text-[15.5px] md:text-[17px] text-paper/80 leading-[1.65] mb-8 font-normal">
+          Só que um desses dois serviços vale três vezes mais no mercado — e você está deixando esse dinheiro em cima da mesa toda vez que uma cacheada senta na sua cadeira e você resolve o problema dela com a técnica que aprendeu pra cabelo liso.
+        </p>
+
+        <p class="para-reveal impact-text text-xl md:text-2xl font-extrabold leading-[1.3] tracking-tight" id="impact2">
+          Não é falta de talento. É que ninguém te ensinou a diferença.
+        </p>
+
+      </div>
+
+
+      <!-- COMPARATIVO VISUAL (Glassmorphism + Parallax) -->
+      <div class="mb-20 md:mb-32 max-w-2xl mx-auto relative perspective-[1200px]" id="cardsContainer">
+        
+        <!-- Background Glow -->
+        <div class="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-64 h-64 bg-gradient-to-tr from-terracotta to-orange rounded-full blur-[80px] opacity-0 z-0" id="cardGlowBg"></div>
+
+        <div class="flex flex-col md:flex-row items-center justify-center gap-8 md:gap-12 relative z-10">
+          
+          <!-- Card 1: Dia a dia -->
+          <div class="anim-card-1 w-full md:w-[260px]">
+            <div class="p-8 rounded-[2rem] bg-paper/5 backdrop-blur-md border border-paper/10 shadow-2xl shadow-ink/50 flex flex-col items-center text-center transition-all duration-500 hover:-translate-y-2 hover:scale-[1.03] hover:bg-paper/10 hover:border-paper/20 cursor-pointer group">
+              <div class="w-12 h-12 rounded-full bg-paper/10 flex items-center justify-center mb-6 anim-item-1 transition-transform duration-500 group-hover:scale-110">
+                <i data-lucide="scissors" class="w-5 h-5 text-paper/60"></i>
+              </div>
+              <span class="text-[10px] font-bold uppercase tracking-[0.2em] text-paper/60 block mb-3 anim-item-1">Penteado do dia a dia</span>
+              <span class="text-4xl font-extrabold text-paper tracking-tight block mb-2 anim-item-1">R$80</span>
+              <span class="text-xs text-paper/50 font-medium anim-item-1">mesmo tempo de cadeira</span>
+            </div>
+          </div>
+
+          <!-- Divider -->
+          <div class="hidden md:flex flex-col items-center justify-center anim-divider">
+            <div class="w-[1px] h-16 bg-gradient-to-b from-transparent via-paper/30 to-transparent"></div>
+            <div class="w-8 h-8 rounded-full border border-paper/20 flex items-center justify-center my-3 bg-wine/50 backdrop-blur-sm">
+              <i data-lucide="arrow-right" class="w-4 h-4 text-paper/50"></i>
+            </div>
+            <div class="w-[1px] h-16 bg-gradient-to-b from-transparent via-paper/30 to-transparent"></div>
+          </div>
+          <div class="md:hidden flex items-center justify-center anim-divider h-10">
+             <i data-lucide="arrow-down" class="w-5 h-5 text-paper/30"></i>
+          </div>
+
+          <!-- Card 2: Festa -->
+          <div class="anim-card-2 w-full md:w-[280px]">
+            <div class="p-8 rounded-[2rem] bg-gradient-to-br from-paper/10 to-transparent backdrop-blur-md border border-terracotta/40 shadow-[0_0_40px_rgba(229,133,72,0.15)] flex flex-col items-center text-center relative overflow-hidden transition-all duration-500 hover:-translate-y-2 hover:scale-[1.03] hover:border-orange/60 hover:shadow-[0_0_50px_rgba(229,133,72,0.35)] cursor-pointer group">
+              <!-- Animated glowing orb inside the card -->
+              <div class="absolute -top-10 -right-10 w-32 h-32 bg-orange/30 rounded-full blur-[40px] anim-orb"></div>
+              
+              <div class="relative z-10 w-12 h-12 rounded-full bg-terracotta/20 flex items-center justify-center mb-6 anim-item-2 transition-transform duration-500 group-hover:scale-110">
+                <i data-lucide="sparkles" class="w-6 h-6 text-terracotta"></i>
+              </div>
+              <span class="relative z-10 text-[10px] font-bold uppercase tracking-[0.2em] text-terracotta block mb-3 anim-item-2">Penteado de festa</span>
+              <span class="relative z-10 text-4xl font-extrabold text-transparent bg-clip-text bg-gradient-to-r from-orange to-terracotta tracking-tight block mb-2 anim-item-2">R$150–R$300</span>
+              <span class="relative z-10 text-xs text-paper/80 font-medium anim-item-2">o que você já pode cobrar</span>
+            </div>
+          </div>
+
+        </div>
+      </div>
+
+
+      <!-- BLOCO 2: Narrative Text -->
+      <div class="max-w-2xl mx-auto text-paper">
+
+        <p class="para-reveal text-[15.5px] md:text-[17px] text-paper/80 leading-[1.65] mb-7 font-normal">
+          Você já sentiu isso: a cliente senta, mostra uma foto no celular — penteado de casamento, cabelo solto com ondas soltas na lateral — e você sorri, diz “consigo sim”, e por dentro já está calculando se o chapinha vai estragar aquele cacho que ela levou anos pra aceitar usar.
+        </p>
+
+        <p class="para-reveal text-[15.5px] md:text-[17px] text-paper/80 leading-[1.65] mb-7 font-normal">
+          Ou pior: você faz. Sai bonito. Mas você sabe, no fundo, que forçou o cabelo a virar outra coisa — e cobrou o mesmo R$80 de sempre por isso.
+        </p>
+
+        <p class="para-reveal text-[15.5px] md:text-[17px] text-paper/80 leading-[1.65] mb-7 font-normal">
+          Enquanto isso, a cabeleireira que sabe trabalhar a curvatura em vez de lutar contra ela cobra R$150, R$200, R$300 pelo mesmo horário de cadeira — e ainda ganha a cliente de volta pra próxima festa, porque penteado bom em cacheado é raro, e cliente que acha uma profissional assim não troca por ninguém.
+        </p>
+
+        <div class="para-reveal closing-quote mt-10">
+          <p class="text-lg md:text-xl lg:text-[22px] font-extrabold leading-[1.35] tracking-tight italic impact-text" id="impact3">
+            “O problema nunca foi o cabelo dela. Foi o curso que você fez, que ensinou penteado pra cabelo liso e chamou de ‘penteado’.”
+          </p>
+        </div>
+
+        <!-- Botão de fechamento da seção -->
+        <div class="para-reveal mt-12 flex justify-center">
+          <a href="#cta" class="btn-primary glow-effect bg-orange text-ink hover:bg-paper hover:text-wine border-none shadow-[0_0_25px_rgba(229,133,72,0.5)] hover:shadow-[0_0_35px_rgba(255,250,247,0.7)] py-4 px-9 text-sm md:text-[0.875rem] flex items-center gap-3">
+            Quero aprender agora
+            <i data-lucide="arrow-right" class="w-5 h-5"></i>
+          </a>
+        </div>
+
+      </div>
+
+    </div>
+  </section>
+
   <!-- ===== SCRIPTS ===== -->
   <script>
     // Initialize Lucide Icons
@@ -601,6 +826,165 @@
         scrollIndicator.style.opacity = opacity;
       });
     }
+
+    // ========================================
+    // SECTION 2: PAIN / IDENTIFICATION — GSAP
+    // ========================================
+
+    // ---- 1. CASCADING PARAGRAPH REVEALS ----
+    const paraReveals = document.querySelectorAll('.para-reveal');
+    paraReveals.forEach((el, i) => {
+      gsap.to(el, {
+        scrollTrigger: {
+          trigger: el,
+          start: 'top 88%',
+          toggleActions: 'play none none reverse'
+        },
+        y: 0,
+        opacity: 1,
+        duration: 0.9,
+        ease: 'power3.out',
+        delay: (i % 3) * 0.1 // Stagger feeling
+      });
+    });
+
+    // ---- 2. PARALLAX on section background ----
+    const s2Bg = document.getElementById('s2-bg-parallax');
+    if (s2Bg) {
+      gsap.to(s2Bg, {
+        scrollTrigger: {
+          trigger: '#problema',
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1
+        },
+        y: '20%',
+        ease: 'none'
+      });
+    }
+
+    // ---- 3. ELEGANT CARDS ENTRANCE & PARALLAX ----
+    const cardsContainer = document.getElementById('cardsContainer');
+    
+    if (cardsContainer) {
+      const cardsTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: cardsContainer,
+          start: 'top 80%',
+          toggleActions: 'play none none reverse'
+        }
+      });
+
+      // 3D Entrance
+      cardsTl
+        .fromTo('.anim-card-1', 
+          { x: -100, opacity: 0, rotateY: 15 },
+          { x: 0, opacity: 1, rotateY: 0, duration: 1, ease: 'power3.out' }
+        )
+        .fromTo('.anim-card-2', 
+          { x: 100, opacity: 0, rotateY: -15 },
+          { x: 0, opacity: 1, rotateY: 0, duration: 1, ease: 'power3.out' },
+          '-=0.8'
+        )
+        .fromTo('.anim-divider',
+          { scale: 0, opacity: 0 },
+          { scale: 1, opacity: 1, duration: 0.6, ease: 'back.out(1.5)' },
+          '-=0.5'
+        )
+        .fromTo('#cardGlowBg',
+          { scale: 0.5, opacity: 0 },
+          { scale: 1, opacity: 0.4, duration: 2, ease: 'power2.out' },
+          '-=1'
+        )
+        .fromTo('.anim-item-1',
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power2.out' },
+          '-=1.2'
+        )
+        .fromTo('.anim-item-2',
+          { y: 20, opacity: 0 },
+          { y: 0, opacity: 1, duration: 0.6, stagger: 0.1, ease: 'power2.out' },
+          '-=1'
+        );
+
+      // Continuous floating orb
+      gsap.to('.anim-orb', {
+        y: 20,
+        x: -10,
+        duration: 3,
+        repeat: -1,
+        yoyo: true,
+        ease: 'sine.inOut'
+      });
+
+      // Scroll Parallax (cards float at different speeds)
+      gsap.to('.anim-card-1', {
+        scrollTrigger: {
+          trigger: cardsContainer,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1
+        },
+        y: -30,
+        ease: 'none'
+      });
+      gsap.to('.anim-card-2', {
+        scrollTrigger: {
+          trigger: cardsContainer,
+          start: 'top bottom',
+          end: 'bottom top',
+          scrub: 1.5
+        },
+        y: -70,
+        ease: 'none'
+      });
+    }
+
+    // ---- 4. PROGRESSIVE TEXT HIGHLIGHTING ----
+    ['impact1', 'impact2', 'impact3'].forEach(id => {
+      const el = document.getElementById(id);
+      if (!el) return;
+      ScrollTrigger.create({
+        trigger: el,
+        start: 'top 80%',
+        onEnter: () => el.classList.add('is-active'),
+        onLeaveBack: () => el.classList.remove('is-active')
+      });
+    });
+
+    // ---- 6. SCROLL PROGRESS INDICATOR ----
+    const progressFill = document.getElementById('sectionProgressFill');
+    const problemaSection = document.getElementById('problema');
+    if (progressFill && problemaSection) {
+      gsap.to(progressFill, {
+        scrollTrigger: {
+          trigger: problemaSection,
+          start: 'top center',
+          end: 'bottom center',
+          scrub: 0.3
+        },
+        scaleY: 1,
+        ease: 'none'
+      });
+    }
+
+    // ---- 7. FIX: REFRESH SCROLLTRIGGER ON LOAD ----
+    // This prevents async image loading from misaligning the scroll triggers
+    window.addEventListener('load', () => {
+      ScrollTrigger.refresh();
+    });
+
+    const heroImg = document.querySelector('#heroTilt img');
+    if (heroImg) {
+      if (heroImg.complete) {
+        ScrollTrigger.refresh();
+      } else {
+        heroImg.addEventListener('load', () => ScrollTrigger.refresh());
+      }
+    }
+
+    // Re-initialize Lucide icons for newly added section
+    lucide.createIcons();
   </script>
 
 </body>
