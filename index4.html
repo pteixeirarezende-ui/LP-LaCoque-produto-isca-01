@@ -559,7 +559,74 @@
       line-height: 1.6;
       font-size: 0.95rem;
     }
+  
+    /* ===== FINAL POLISH & CHARM ===== */
+    /* Sec 2: Glass Panel Hover */
+    .glass-panel-dark {
+      transition: all 0.4s ease;
+    }
+    .glass-panel-dark:hover {
+      background: rgba(58, 16, 21, 0.95);
+      box-shadow: 0 15px 40px rgba(109, 22, 32, 0.4);
+      transform: translateY(-2px);
+      border-color: rgba(229, 133, 72, 0.4);
+    }
+
+    /* Sec 3: Image Hover */
+    .s3-organic-clip {
+      transition: all 0.7s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .s3-organic-clip:hover {
+      transform: scale(1.03) rotate(1deg);
+      box-shadow: 0 30px 60px rgba(109, 22, 32, 0.4);
+      border-radius: 40% 20% 40% 40% / 40% 30% 50% 40%;
+    }
+
+    /* Sec 4: Icon Glow on Hover */
+    .s4-icon-draw {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+    }
+    .s4-item:hover .s4-icon-draw {
+      background: rgba(229, 133, 72, 0.2);
+      border-color: rgba(229, 133, 72, 0.5);
+      box-shadow: 0 0 25px rgba(229, 133, 72, 0.4);
+      transform: scale(1.15) rotate(-5deg);
+      color: var(--paper);
+    }
+    .s4-text-block {
+      transition: all 0.4s ease;
+    }
+    .s4-item:hover .s4-text-block {
+      transform: translateX(10px);
+    }
+
+    /* Sec 6: FAQ Rich Hover */
+    .faq-item {
+      transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+      padding: 0 1.5rem;
+      border-radius: 16px;
+      margin-bottom: 8px;
+      border: 1px solid transparent;
+      border-bottom: 1px solid rgba(109, 22, 32, 0.1);
+    }
+    .faq-item:hover {
+      background-color: rgba(255, 250, 247, 0.9);
+      box-shadow: 0 8px 25px rgba(109, 22, 32, 0.05);
+      transform: translateX(6px);
+      border: 1px solid rgba(109, 22, 32, 0.05);
+    }
+    .faq-item.is-open {
+      background-color: #fff;
+      box-shadow: 0 15px 40px rgba(109, 22, 32, 0.08);
+      border: 1px solid rgba(109, 22, 32, 0.1);
+      transform: scale(1.01);
+    }
+    .faq-item.is-open:hover {
+      transform: scale(1.01);
+    }
+    
   </style>
+
 </head>
 <body class="antialiased selection:bg-wine selection:text-paper">
 
@@ -620,9 +687,12 @@
     <!-- Particles Background -->
     <div class="particles-bg" id="particles"></div>
 
-    <!-- Decorative Background Elements -->
-    <div class="hero-bg-circle w-[600px] h-[600px] -top-[200px] -right-[100px] z-0"></div>
-    <div class="hero-bg-circle w-[400px] h-[400px] bottom-[10%] -left-[100px] z-0"></div>
+    
+    <!-- Decorative Background Elements (Parallax & Glow) -->
+    <div class="hero-bg-circle parallax-element w-[800px] h-[800px] -top-[100px] -right-[150px] z-0 opacity-80" data-speed="0.1" style="background: radial-gradient(circle, rgba(229,133,72,0.15) 0%, rgba(229,133,72,0) 70%);"></div>
+    <div class="hero-bg-circle parallax-element w-[500px] h-[500px] bottom-[5%] -left-[150px] z-0 opacity-80" data-speed="-0.15" style="background: radial-gradient(circle, rgba(109,22,32,0.1) 0%, rgba(109,22,32,0) 70%);"></div>
+    <div class="absolute top-[20%] left-[20%] w-[300px] h-[300px] bg-terracotta/20 rounded-full blur-[100px] parallax-element z-0" data-speed="0.05"></div>
+
     <div class="absolute top-0 right-0 w-1/2 h-full bg-gradient-to-l from-blush/40 via-transparent to-transparent z-0 hidden lg:block"></div>
 
     <!-- Main Content Grid -->
@@ -648,8 +718,7 @@
             Existe um serviço, dentro do seu próprio salão, que você já sabe fazer <span class="text-transparent bg-clip-text bg-gradient-to-r from-terracotta to-wine">pela metade do preço</span> que podia cobrar.
           </h1>
 
-          <!-- Accent line -->
-          <div id="anim-line" class="reveal accent-line mb-6"></div>
+          
 
           <!-- Subheadline -->
           <p id="anim-sub" class="reveal text-[15.5px] md:text-[17px] text-ink/75 leading-[1.6] mb-9 max-w-xl font-normal">
@@ -692,7 +761,7 @@
             <div class="hero-image-wrapper tilt-container" id="heroTilt">
               <!-- SUBSTITUIR: foto placeholder, trocar por still real da Carla -->
               <img 
-                src="https://images.unsplash.com/photo-1522337360788-8b13dee7a37e?q=80&w=1200&auto=format&fit=crop" 
+                src="Inspira%C3%A7%C3%A3o/3f0169ed38d92662892bfac7eba4d7a8.jpg" 
                 alt="Penteado em cabelo cacheado sendo finalizado por profissional" 
                 class="w-full h-[360px] sm:h-[420px] md:h-[480px] lg:h-[540px] xl:h-[580px] object-cover rounded-[24px]"
                 loading="eager"
@@ -738,7 +807,7 @@
     <!-- Parallax Background Image -->
     <div class="absolute inset-0 w-full h-[120%] -top-[10%] z-0" id="s2-bg-parallax">
       <!-- SUBSTITUIR: foto placeholder, trocar por still real da Carla/salão -->
-      <img src="https://images.unsplash.com/photo-1595476108010-b4d1f10d5e43?q=80&w=1600&auto=format&fit=crop" alt="Background editorial" class="w-full h-full object-cover">
+      <img src="https://images.unsplash.com/photo-1595476108010-b4d1f10d5e43?q=80&w=1600&auto=format&fit=crop" alt="Background editorial" class="w-full h-[120%] object-cover parallax-element" data-speed="-0.15" style="top: -10%; position: relative;">
     </div>
 
     <!-- Gradient Overlay tint -->
@@ -767,7 +836,13 @@
 
 
       <!-- BLOCO 1: Editorial Text -->
-      <div class="max-w-3xl mx-auto mb-20 md:mb-28 text-paper">
+      
+      <!-- Ponto de Luz / Parallax Glow nas costas do texto -->
+      <div class="absolute top-[10%] left-1/2 -translate-x-1/2 w-[600px] h-[600px] bg-orange/30 rounded-full blur-[120px] parallax-element z-0 mix-blend-screen" data-speed="-0.2"></div>
+      <div class="absolute bottom-[20%] -right-[100px] w-[400px] h-[400px] bg-terracotta/40 rounded-full blur-[100px] parallax-element z-0 mix-blend-screen" data-speed="0.1"></div>
+      
+      <div class="max-w-3xl
+ mx-auto mb-20 md:mb-28 text-paper">
 
         <p class="para-reveal text-xl sm:text-2xl md:text-[28px] font-extrabold leading-[1.35] tracking-[-0.01em] mb-8">
           Deixa eu te contar uma coisa que quase nenhuma cabeleireira admite em voz alta.
@@ -1972,8 +2047,24 @@
           }
         });
       });
+      // 7. Efeito Parallax nos Pontos de Luz e Bolhas
+      const parallaxElements = document.querySelectorAll('.parallax-element');
+      parallaxElements.forEach(el => {
+        const speed = parseFloat(el.getAttribute('data-speed')) || 0.1;
+        gsap.to(el, {
+          y: () => (ScrollTrigger.maxScroll(window) * speed),
+          ease: "none",
+          scrollTrigger: {
+            trigger: document.body,
+            start: "top top",
+            end: "bottom bottom",
+            scrub: true
+          }
+        });
+      });
     });
   </script>
+
 
 </body>
 </html>
