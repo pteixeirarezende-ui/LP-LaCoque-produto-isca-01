@@ -560,4 +560,53 @@ document.addEventListener('DOMContentLoaded', () => {
           }
         });
       });
+    
+    // ==== AESTHETIC POLISH (CHARME) JS ====
+    
+    // 1. VANILLA TILT on Problem Cards
+    const problemCards = document.querySelectorAll('.tilt-card');
+    if (problemCards.length > 0 && window.innerWidth >= 1024) {
+      VanillaTilt.init(problemCards, {
+        max: 8,
+        speed: 1000,
+        scale: 1.05,
+        glare: true,
+        'max-glare': 0.2,
+        perspective: 1000,
+      });
+    }
+
+    // 2. IMAGE PARALLAX (Autoridade Image)
+    const authImg = document.getElementById('auth-img');
+    if (authImg) {
+      gsap.fromTo(authImg, 
+        { y: -30, scale: 1.05 },
+        {
+          y: 30,
+          scale: 1,
+          ease: 'none',
+          scrollTrigger: {
+            trigger: '#autoridade',
+            start: 'top bottom',
+            end: 'bottom top',
+            scrub: true
+          }
+        }
+      );
+    }
+    
+    // 3. TYPING EFFECT SIMULATION on the Hero Subheadline (optional, maybe too complex. Let's stick to parallax)
+    
+    // 4. MOUSE TRACKING GLOW (Microinteraction on Method cards)
+    const methodCards = document.querySelectorAll('.s5-feat-item');
+    methodCards.forEach(card => {
+      card.addEventListener('mousemove', (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        card.style.setProperty('--mouse-x', `${x}px`);
+        card.style.setProperty('--mouse-y', `${y}px`);
+      });
     });
+
+});

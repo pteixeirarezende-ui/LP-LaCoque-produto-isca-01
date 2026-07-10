@@ -582,3 +582,52 @@
     .faq-item.is-open:hover {
       transform: scale(1.01);
     }
+/* ===== AESTHETIC POLISH (CHARME) ===== */
+
+/* Inicial state para elementos com GSAP scroll trigger */
+.para-reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  will-change: transform, opacity;
+}
+
+/* Shine Sweep effect para botões primários */
+.btn-primary {
+  position: relative;
+  overflow: hidden;
+}
+.btn-primary::after {
+  content: '';
+  position: absolute;
+  top: 0; left: -100%;
+  width: 50%; height: 100%;
+  background: linear-gradient(to right, rgba(255,255,255,0) 0%, rgba(255,255,255,0.2) 50%, rgba(255,255,255,0) 100%);
+  transform: skewX(-20deg);
+  animation: shine 4s infinite;
+}
+@keyframes shine {
+  0% { left: -100%; }
+  20% { left: 200%; }
+  100% { left: 200%; }
+}
+
+/* FAQ Hover & Transitions */
+.faq-item {
+  transition: all 0.4s ease;
+}
+.faq-item:hover {
+  transform: translateX(4px);
+  border-left: 2px solid var(--terracotta);
+}
+.faq-question:hover .faq-icon {
+  color: var(--terracotta);
+  transform: scale(1.1);
+}
+
+/* Method Cards Hover */
+.s5-feat-item {
+  transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275), box-shadow 0.5s ease;
+}
+.s5-feat-item:hover {
+  box-shadow: 0 20px 40px rgba(109, 22, 32, 0.15);
+}
