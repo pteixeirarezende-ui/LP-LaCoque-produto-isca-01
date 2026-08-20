@@ -1,5 +1,5 @@
 document.addEventListener('DOMContentLoaded', () => {
-lucide.createIcons();
+if (typeof lucide !== 'undefined') { lucide.createIcons(); }
 
     // GSAP Registration
     gsap.registerPlugin(ScrollTrigger);
@@ -392,7 +392,7 @@ lucide.createIcons();
     }
 
     // Re-initialize Lucide icons for newly added section
-    lucide.createIcons();
+    if (typeof lucide !== 'undefined') { lucide.createIcons(); }
 });
 
 document.addEventListener('DOMContentLoaded', () => {
